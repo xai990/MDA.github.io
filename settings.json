@@ -1,0 +1,5 @@
+{ 
+    "css.validate": false,
+    "less.validate": false, // (if you edit .less)
+    "scss.validate": false 
+}
