@@ -187,133 +187,201 @@
     </head>
     <body>
         <div class="container-fluid main-container">
-
-
-        <!-- setup 3col/9col grid for toc_float and main content  -->
+        <!-- setup 3col/9col grid for toc_float and main content -->
         <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-3">
-        <div id="TOC" class="tocify">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+            <div id="TOC" class="tocify"></div>
+            </div>
+
+            <div class="toc-content col-xs-12 col-sm-8 col-md-9">
+            <h1>Welcome to CompBioWizard/scEpigenimics project</h1>
+
+            <div id="header">
+                <div class="btn-group pull-right float-right">
+                <button
+                    type="button"
+                    class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle"
+                    data-toggle="dropdown"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    <span>Code</span>
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+                    <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+                    <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+                </ul>
+                </div>
+
+                <h1 class="title toc-ignore">CAR-T Analaysis</h1>
+            </div>
+
+            <p><em>File Update: June 3, 2025</em></p>
+            <p>
+                Xusheng Ai
+                (<a href="mailto:xai@mdanderson.org" class="email">xai@mdanderson.org</a>)
+            </p>
+
+            <div id="SET UP" class="section level1">
+                <h2>0. Configure the Python environment</h2>
+                <p>
+                Go to the
+                <a
+                    href="https://github.com/CompBioWizard/scEpigenomics.git"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Github repo</a
+                >
+                and follow the Installation.
+                </p>
+            </div>
+
+            <div id="sample-k27me3-cell-x-50kb-bin" class="section level2">
+                <h2>1. Samples K27me3: 50kb bin × cell</h2>
+                <p>First read the BED file and create the tile matrix:</p>
+                <pre class="r"><code># Using Python 3
+# If the tile‑matrix file is provided
+python -m bin.genomicspipeline --config <config file path> --matrix_file <matrix file path>
+# Else create the tile matrix from the BED file
+python -m bin.genomicspipeline --config <config file path>
+# The tile‑matrix file will be stored under the results folder        
+    </code></pre>
+            </div>
+
+            <div id="normalization-iterativelsi" class="section level3">
+                <h2>2. Normalization: IterativeLSI</h2>
+                <p>
+                Tuning parameters: <code>n_components</code> = 50, 100, 150;&nbsp;
+                dropout ratio for low‑enriched tiles: 90 %, 95 %, 99 %.
+                </p>
+            </div>
+
+            <h2>3. UMAP Plots</h2>
+            <p>
+                Initial experiment: keep all the tile features; normalize the matrix
+                with different <code>n_components</code>: 50, 100, 150.
+            </p>
+            <img src="results/alltile_vary_ncomp.png" width="672" alt="UMAP varying n_components">
+
+            <p>
+                Next we set the minimum reads per tile to 10 (biological drop #1).
+                According to the drop rate and <code>var_features</code> we sweep
+                different parameter combinations.
+            </p>
+            <img src="results/droptile_vary_ncomp.png" width="672" alt="drop‑tile parameter sweep">
+
+            <p>
+                Varying drop‑rate at fixed <code>n_components = 50</code>:
+            </p>
+            <img src="results/droptile1_50ncomp.png" width="672" alt="run 1">
+            <img src="results/droptile2_50ncomp.png" width="672" alt="run 2">
+            <img src="results/droptile3_50ncomp.png" width="672" alt="run 3">
+            <img src="results/droptile4_50ncomp.png" width="672" alt="run 4">
+            <img src="results/droptile5_50ncomp.png" width="672" alt="run 5">
+            <img src="results/droptile6_50ncomp.png" width="672" alt="run 6">
+            <img src="results/droptile7_50ncomp.png" width="672" alt="run 7">
+
+            <h2>4. Cell‑density plot &amp; filter</h2>
+            <p>
+                After tile‑feature selection we also filter cells with low reads.
+                The following figure shows the density plot of the cell × tile
+                matrix. (var_feature->206 with drop ratio 0.99)
+            </p>
+            <p>
+                The tile data is a [23336 x 20646] matrix (after drop the tile 
+                features that lower than 10). We set the cell reads threshold
+                equal to 500, there are 272 cells left with maximum reads number 12686. 
+            </p>
+            <img src="results/celldensity.png" width="672" alt="cell density">
+            <p>
+                Here is the UMAP plot that shows different color as for different reads
+            </p>
+            <img src="results/dropcell_tile.png" width="672" alt="plot">
+            <p>
+                As a comparsion, we keep all the cell. However, we change the n and 
+                dist parameter to 50 and 0.2, so the umap looks different compared 
+                with the plots above. Then, we keep most of the tile features (greater
+                than 10).
+            </p>
+            <img src="results/allcell_droptile.png" width="672" alt="droptileplot">
+            <img src="results/allcell_mostoftile.png" width="672" alt="droptileplot">
+
+            </div>
         </div>
         </div>
 
-        <div class="toc-content col-xs-12 col-sm-8 col-md-9">
-        <h1>Welcome to CompBioWizard/scEpigenimics project</h1>
-        <div id="header">
+        <!-- Scripts ---------------------------------------------------------->
 
-        <div class="btn-group pull-right float-right">
-        <button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-        <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-        <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-        </ul>
-        </div>
-        <h1 class="title toc-ignore">CAR-T Analaysis </h1>
-
-        </div>
-        <!-- <p> </p> -->
-        <p><em>File Update: May 28, 2025</em></p>
-        <p>Xusheng Ai (<a href="mailto:xai@mdanderson.org" class="email">xai@mdanderson.org</a>)</p>
-        
-        <div id="SET UP" class="section level1"></div>
-        <h2>0. Configure the Python environment</h2>
-        <p> Go to the <a href="https://github.com/CompBioWizard/scEpigenomics.git" target="_blank" rel="noopener noreferrer">Github repo</a> and follow the Installation. </p>
-        <div id="sample-k27me3-cell-x-50kb-bin" class="section level2">
-        <h2>1. samples K27me3: 50kb bin x cell</h2>
-        <p>First read the bed file and create the tile matrix</p>
-        <pre class="r"><code>## Using Python 3.
-# if the tile matrix file was provided
-python -m bin.genomicspipeline --config &lt;config file path&gt; --matrix_file &lt;matrix file path&gt;
-# else create the tile matrix from the bed file
-python -m bin.genomicspipeline --config &lt;config file path&gt;
-# the tile matrix file will be stored under results folder        
-        </code></pre>
-        </div>
-        <div id="normalization-iterativelsi" class="section level3"></div>
-        <h2>2. Normalization: IterativeLSI</h2>
-        <p>The tunning paramter contains: n_components 50, 100, 150; dropout ratio for low enriched tiles: 90%, 95%, 99%. </p>
-        <h2>3. UMAP Plots</h2>
-        <p><img src="results/alltile_vary_ncomp.png" width="672" /></p>
-        
-        <p><img src="results/droptile_vary_ncomp.png" width="672" /></p>
-       
-       
-        </div>
-        </div>
-        </div>
-        </div>
-    <script>
-
-        <!-- add bootstrap table styles to pandoc tables -->
+        <script>
+        // Add Bootstrap table styles to pandoc tables
         function bootstrapStylePandocTables() {
-        $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+            $("tr.odd").parent("tbody").parent("table").addClass("table table-condensed");
         }
         $(document).ready(function () {
-        bootstrapStylePandocTables();
-        });
-
-
-    </script>
-
-        <!-- tabsets -->
-
-        <script>
-        $(document).ready(function () {
-        window.buildTabsets("TOC");
-        });
-
-        $(document).ready(function () {
-        $('.tabset-dropdown > .nav-tabs > li').click(function () {
-            $(this).parent().toggleClass('nav-tabs-open');
-        });
+            bootstrapStylePandocTables();
         });
         </script>
 
-        <!-- code folding -->
+        <!-- Tabsets -->
         <script>
         $(document).ready(function () {
-        window.initializeCodeFolding("show" === "show");
+            window.buildTabsets("TOC");
+
+            $(".tabset-dropdown > .nav-tabs > li").click(function () {
+            $(this).parent().toggleClass("nav-tabs-open");
+            });
+        });
+        </script>
+
+        <!-- Code folding -->
+        <script>
+        $(document).ready(function () {
+            window.initializeCodeFolding("show" === "show");
         });
         </script>
 
         <script>
-        $(document).ready(function ()  {
+        $(document).ready(function () {
+            // Temporarily add toc-ignore selector to headers for consistency with Pandoc
+            $(".unlisted.unnumbered").addClass("toc-ignore");
 
-            // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-            $('.unlisted.unnumbered').addClass('toc-ignore')
+            // Move toc-ignore selectors from section div to header
+            $("div.section.toc-ignore")
+            .removeClass("toc-ignore")
+            .children("h1,h2,h3,h4,h5")
+            .addClass("toc-ignore");
 
-            // move toc-ignore selectors from section div to header
-            $('div.section.toc-ignore')
-                .removeClass('toc-ignore')
-                .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-            // establish options
+            // TOC options
             var options = {
             selectors: "h1,h2,h3",
             theme: "bootstrap3",
-            context: '.toc-content',
+            context: ".toc-content",
             hashGenerator: function (text) {
-                return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+                return text.replace(/[.\\/?&!#<>]/g, "").replace(/\s/g, "_");
             },
             ignoreSelector: ".toc-ignore",
-            scrollTo: 0
+            scrollTo: 0,
+            showAndHide: true,
+            smoothScroll: true,
             };
-            options.showAndHide = true;
-            options.smoothScroll = true;
 
-            // tocify
-            var toc = $("#TOC").tocify(options).data("toc-tocify");
+            // Initialise tocify
+            $("#TOC").tocify(options).data("toc-tocify");
         });
         </script>
 
-        <!-- dynamically load mathjax for compatibility with self-contained -->
+        <!-- Dynamically load MathJax for self‑contained compatibility -->
         <script>
         (function () {
             var script = document.createElement("script");
             script.type = "text/javascript";
-            script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+            script.src =
+            "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
             document.getElementsByTagName("head")[0].appendChild(script);
         })();
         </script>
-    
     </body>
 </html>
