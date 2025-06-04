@@ -254,27 +254,27 @@ python -m bin.genomicspipeline --config <config file path>
             <div id="normalization-iterativelsi" class="section level3">
                 <h2>2. Normalization: IterativeLSI</h2>
                 <p>
-                Tuning parameters: <code>n_components</code> = 50, 100, 150;&nbsp;
-                dropout ratio for low‑enriched tiles: 90 %, 95 %, 99 %.
+                    Tuning parameters: <code>n_components</code> = 50, 100, or 150;&nbsp;
+                    dropout ratios for low-enriched tiles: 90 %, 95 %, and 99 %.
                 </p>
             </div>
 
             <h2>3. UMAP Plots</h2>
             <p>
-                Initial experiment: keep all the tile features; normalize the matrix
-                with different <code>n_components</code>: 50, 100, 150.
+                Initial experiment: retain all tile features and normalize the matrix with
+                <code>n_components</code> set to 50, 100, and 150.
             </p>
             <img src="results/alltile_vary_ncomp.png" width="672" alt="UMAP varying n_components">
 
             <p>
-                Next we set the minimum reads per tile to 10 (biological drop #1).
-                According to the drop rate and <code>var_features</code> we sweep
-                different parameter combinations.
+                Next, we set the minimum reads per tile to 10 (biological drop #1).  
+                Based on the dropout rate and <code>var_features</code>, we tested several
+                parameter combinations.
             </p>
             <img src="results/droptile_vary_ncomp.png" width="672" alt="drop‑tile parameter sweep">
 
             <p>
-                Varying drop‑rate at fixed <code>n_components = 50</code>:
+                Effect of varying dropout rate with <code>n_components = 50</code>:
             </p>
             <img src="results/droptile1_50ncomp.png" width="672" alt="run 1">
             <img src="results/droptile2_50ncomp.png" width="672" alt="run 2">
@@ -284,31 +284,37 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/droptile6_50ncomp.png" width="672" alt="run 6">
             <img src="results/droptile7_50ncomp.png" width="672" alt="run 7">
 
-            <h2>4. Cell‑density plot &amp; filter</h2>
+            <h3>3.1. Cell‑density plot &amp; filter</h3>
             <p>
-                After tile‑feature selection we also filter cells with low reads.
-                The following figure shows the density plot of the cell × tile
-                matrix. (var_feature->206 with drop ratio 0.99)
+                After selecting tile features, we filtered out cells with low read counts.
+                The figure below shows the density plot of the cell × tile matrix
+                (<code>var_features</code> → 206 at a dropout ratio of 0.99).
             </p>
             <p>
-                The tile data is a [23336 x 20646] matrix (after drop the tile 
-                features that lower than 10). We set the cell reads threshold
-                equal to 500, there are 272 cells left with maximum reads number 12686. 
+                The resulting tile matrix has dimensions 23 336 × 20 646 after removing tiles
+                with fewer than 10 reads. With a per-cell read threshold of 500, 272 cells
+                remain; the most abundant contains 12 686 reads.
             </p>
             <img src="results/celldensity.png" width="672" alt="cell density">
             <p>
-                Here is the UMAP plot that shows different color as for different reads
+                The following UMAP plot colors cells by their read counts.
             </p>
             <img src="results/dropcell_tile.png" width="672" alt="plot">
             <p>
-                As a comparsion, we keep all the cell. However, we change the n and 
-                dist parameter to 50 and 0.2, so the umap looks different compared 
-                with the plots above. Then, we keep most of the tile features (greater
-                than 10).
+                For comparison, we retained all cells but set <code>n_neighbors = 50</code>
+                and <code>min_dist = 0.2</code> in UMAP, producing a layout distinct from the
+                plots above. The left UMAP plot is produced without dropping tile features (&lt; 10).
+                The right UMAP plot is produced without dropping the tile features and cells.
             </p>
-            <img src="results/allcell_droptile.png" width="672" alt="droptileplot">
-            <img src="results/allcell_mostoftile.png" width="672" alt="droptileplot">
-
+            <img src="results/allcell_droptile.png" width="336" alt="droptileplot">
+            <img src="results/allcell_mostoftile.png" width="336" alt="droptileplot">
+            <h3>3.2. imputation plot &amp; filter</h3>
+            <p>
+                The left panel applies KNN smoothing to the tile matrix; the right panel
+                shows the original pipeline without smoothing. 
+            </p>
+            <img src="results/knn_dropcell_droptile_lsi.png" width="336" alt="knn">
+            <img src="results/dropcell_tile.png" width="336" alt="origin">
             </div>
         </div>
         </div>
