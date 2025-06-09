@@ -196,7 +196,7 @@
             <div id="TOC" class="tocify"></div>
             </div>
 
-            <div class="toc-content col-xs-12 col-sm-8 col-md-offset-1">
+            <div class="toc-content col-xs-12 col-sm-8 col-md-9">
             <h1>Welcome to CompBioWizard/scEpigenimics project</h1>
 
             <div id="header">
@@ -228,32 +228,9 @@
                 (<a href="mailto:xai@mdanderson.org" class="email">xai@mdanderson.org</a>)
             </p>
 
-            <div id="SET UP" class="section level1">
-                <h2>0. Configure the Python environment</h2>
-                <p>
-                Go to the
-                <a
-                    href="https://github.com/CompBioWizard/scEpigenomics.git"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Github repo</a
-                >
-                and follow the Installation.
-                </p>
-            </div>
-
-            <div id="sample-k4me3-cell-x-50kb-bin" class="section level2">
-                <h2>1. Samples K4me3: 50kb bin × cell</h2>
-                <p>First read the BED file and create the tile matrix:</p>
-                <pre class="r"><code># Using Python 3
-# If the tile‑matrix file is provided
-python -m bin.genomicspipeline --config <config file path> --matrix_file <matrix file path>
-# Else create the tile matrix from the BED file
-python -m bin.genomicspipeline --config <config file path>
-# The tile‑matrix file will be stored under the results folder        
-    </code></pre>
-            </div>
             
+            {% include section0.html %}
+            {% include section1.html %}
             {% include section2.html %}
             {% include section3.html %}
             {% include section4.html %}
