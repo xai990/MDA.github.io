@@ -1,3 +1,6 @@
+---
+    layout: default      # or whatever layout you use; omit if none
+---
 <!DOCTYPE html>
 <html>
     <head>
@@ -250,15 +253,8 @@ python -m bin.genomicspipeline --config <config file path>
 # The tile‑matrix file will be stored under the results folder        
     </code></pre>
             </div>
-
-            <div id="normalization-iterativelsi" class="section level3">
-                <h2>2. Normalization: IterativeLSI</h2>
-                <p>
-                    Tuning parameters: <code>n_components</code> = 50, 100, or 150;&nbsp;
-                    dropout ratios for low-enriched tiles: 90 %, 95 %, and 99 %.
-                </p>
-            </div>
-
+            
+            {% include section2.html %}
             <h2>3. UMAP Plots</h2>
             <p>
                 Initial experiment: retain all tile features and normalize the matrix with
