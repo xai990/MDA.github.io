@@ -3,25 +3,25 @@
     Initial experiment: retain all tile features and normalize the matrix with
     <code>n_components</code> set to 50, 100, and 150.
 </p>
-<img src="results/alltile_vary_ncomp.png" width="672" alt="UMAP varying n_components">
+<img src="results/section3/alltile_vary_ncomp.png" width="672" alt="UMAP varying n_components">
 
 <p>
     Next, we set the minimum reads per tile to 10 (biological drop #1).  
     Based on the dropout rate and <code>var_features</code>, we tested several
     parameter combinations.
 </p>
-<img src="results/droptile_vary_ncomp.png" width="672" alt="drop‑tile parameter sweep">
+<img src="results/section3/droptile_vary_ncomp.png" width="672" alt="drop‑tile parameter sweep">
 
 <p>
     Effect of varying dropout rate with <code>n_components = 50</code>:
 </p>
-<img src="results/droptile1_50ncomp.png" width="672" alt="run 1">
-<img src="results/droptile2_50ncomp.png" width="672" alt="run 2">
-<img src="results/droptile3_50ncomp.png" width="672" alt="run 3">
-<img src="results/droptile4_50ncomp.png" width="672" alt="run 4">
-<img src="results/droptile5_50ncomp.png" width="672" alt="run 5">
-<img src="results/droptile6_50ncomp.png" width="672" alt="run 6">
-<img src="results/droptile7_50ncomp.png" width="672" alt="run 7">
+<img src="results/section3/droptile1_50ncomp.png" width="672" alt="run 1">
+<img src="results/section3/droptile2_50ncomp.png" width="672" alt="run 2">
+<img src="results/section3/droptile3_50ncomp.png" width="672" alt="run 3">
+<img src="results/section3/droptile4_50ncomp.png" width="672" alt="run 4">
+<img src="results/section3/droptile5_50ncomp.png" width="672" alt="run 5">
+<img src="results/section3/droptile6_50ncomp.png" width="672" alt="run 6">
+<img src="results/section3/droptile7_50ncomp.png" width="672" alt="run 7">
 
 <h3>3.1. Cell‑density plot &amp; filter</h3>
 <p>
@@ -34,23 +34,23 @@
     with fewer than 10 reads. With a per-cell read threshold of 500, 272 cells
     remain; the most abundant contains 12 686 reads.
 </p>
-<img src="results/celldensity.png" width="672" alt="cell density">
+<img src="results/section3/celldensity.png" width="672" alt="cell density">
 <p>
     The following UMAP plot colors cells by their read counts.
 </p>
-<img src="results/dropcell_tile.png" width="672" alt="plot">
+<img src="results/section3/dropcell_tile.png" width="672" alt="plot">
 <p>
     For comparison, we retained all cells but set <code>n_neighbors = 50</code>
     and <code>min_dist = 0.2</code> in UMAP, producing a layout distinct from the
     plots above. The left UMAP plot is produced without dropping tile features (&lt; 10).
     The right UMAP plot is produced without dropping the tile features and cells.
 </p>
-<img src="results/allcell_droptile.png" width="336" alt="droptileplot">
-<img src="results/allcell_mostoftile.png" width="336" alt="droptileplot">
+<img src="results/section3/allcell_droptile.png" width="336" alt="droptileplot">
+<img src="results/section3/allcell_mostoftile.png" width="336" alt="droptileplot">
 <h3>3.2. imputation plot &amp; filter</h3>
 <p>
     The left panel applies KNN smoothing to the tile matrix; the right panel
     shows the original pipeline without smoothing. 
 </p>
-<img src="results/knn_dropcell_droptile_lsi.png" width="336" alt="knn">
-<img src="results/dropcell_tile.png" width="336" alt="origin">
+<img src="results/section3/knn_dropcell_droptile_lsi.png" width="336" alt="knn">
+<img src="results/section3/dropcell_tile.png" width="336" alt="origin">
