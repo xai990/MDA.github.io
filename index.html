@@ -354,7 +354,7 @@ python -m bin.genomicspipeline --config <config file path>
                 sub chrom informaiton like chromosome x and y
             </p>
             <p>
-                set the threshold to be 100:
+                set the <code>threshold</code> to be <b>100</b>:
                 The file information:results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz
                 [filter] Kept 20646 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23336, 20646)
@@ -369,7 +369,7 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/miniread10_thresdhold100_drop0.9_smooth.png" width="672" alt="origin">
             
             <p>
-                set the threshold to be 300:
+                set the <code>threshold</code> to be <b>300</b>:
                 The file information:results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz
                 [filter] Kept 20646 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23336, 20646)
@@ -384,7 +384,7 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/miniread10_thresdhold300_drop0.9_smooth.png" width="672" alt="origin">
             
             <p>
-                set the threshold to be 500:
+                Set the <code>threshold</code> to be <b>500</b>:
                 The file information:results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz
                 [filter] Kept 20646 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23336, 20646)
@@ -406,7 +406,7 @@ python -m bin.genomicspipeline --config <config file path>
             </p>
             <img src="results/verify/python_Density_plot_pool2_DJ_Hs_CM_0_K4me123_070122.png" width="336" alt="origin">
             <p>
-                set the threshold to be 100:
+                set the <code>threshold</code> to be <b>100</b>:
                 The file information:results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz
                 [filter] Kept 22780 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23894, 22780)
@@ -423,7 +423,7 @@ python -m bin.genomicspipeline --config <config file path>
             
             
             <p>
-                set the threshold to be 300:
+                set the <code>threshold</code> to be <b>300</b>:
                 The file information:results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz
                 [filter] Kept 22780 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23894, 22780)
@@ -438,7 +438,7 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/miniread10_thresdhold300_drop0.9_smooth_pool2.png" width="672" alt="origin">
             
             <p>
-                set the threshold to be 500:
+                set the <code>threshold</code> to be <b>500</b>:
                 The file information:results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz
                 [filter] Kept 22780 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(23894, 22780)
@@ -453,7 +453,7 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/miniread10_thresdhold500_drop0.9_smooth_pool2.png" width="672" alt="origin">
             <h3>4.3 concatenate samples from pool1 and pool2</h3>
             <p>
-                set the threshold to be 100:
+                set the <code>threshold</code> to be <b>100</b>:
                 The file information:['results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz', 'results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz']
                 [filter] Kept 34320 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(47230, 34320)
@@ -468,7 +468,7 @@ python -m bin.genomicspipeline --config <config file path>
             <img src="results/miniread10_thresdhold100_drop0.9_smooth_pool1n2.png" width="672" alt="origin">
             
             <p>
-                set the threshold to be 300:
+                set the <code>threshold</code> to be <b>300</b>:
                 The file information:['results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz', 'results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz']
                 [filter] Kept 34320 / 57509 tiles (≥10 reads)
                 The information of the tile matrix :(47230, 34320)
@@ -482,17 +482,18 @@ python -m bin.genomicspipeline --config <config file path>
             </p>
             <img src="results/miniread10_thresdhold300_drop0.9_smooth_pool1n2.png" width="672" alt="origin">
             <p>
-                set the threshold to be 500:
-                The file information:['results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz', 'results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz']
-                [filter] Kept 34320 / 57509 tiles (≥10 reads)
-                The information of the tile matrix :(47230, 34320)
-                The length of the totla reads:46052
-                The max of the reads:28983
-                [cell filter] keeping 546 / 46052 cells (reads ≥ 500)
-                [drop=0.90] kept 20646/34320 tiles; var_features→2064
-                [smooth] building KNN graph (k=15) …
-                [smooth] aggregating values …
-                [drop=0.90] kept 20646/34320 tiles; var_features→2064
+                set the <code>threshold</code> to be <b>500</b>:<br>
+                The file information: ['results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz',
+                'results/tile_matrix_DJ_Hs_CM_0_K4me123_070122.npz']<br>
+                [filter] Kept 34320 / 57509 tiles (≥10 reads)<br>
+                The information of the tile matrix : (47230, 34320)<br>
+                The length of the total reads : 46052<br>
+                The max of the reads : 28983<br>
+                [cell filter] keeping 546 / 46052 cells (reads ≥ 500)<br>
+                [drop = 0.90] kept 20646 / 34320 tiles; var_features → 2064<br>
+                [smooth] building KNN graph (k = 15)…<br>
+                [smooth] aggregating values …<br>
+                [drop = 0.90] kept 20646 / 34320 tiles; var_features → 2064
             </p>
             <img src="results/miniread10_thresdhold500_drop0.9_smooth_pool1n2.png" width="672" alt="origin">
             
