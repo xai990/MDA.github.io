@@ -1,7 +1,24 @@
 <div id="normalization-iterativelsi" class="section level3">
-    <h2>2. Normalization: IterativeLSI</h2>
-    <p>
-        Tuning parameters: <code>n_components</code> = 50, 100, or 150;&nbsp;
-        dropout ratios for low-enriched tiles: 90 %, 95 %, and 99 %.
-    </p>
+    <h2>2. Data processing </h2>
+<pre class="r"><code># Using Python 3
+# Data processing pipeline 
+python -m bin.dataprocessNplot --config &gtconfig file path&lt --matrix_file &gtmatrix file path&lt
+# The tile‑matrix file will be stored under the results folder        
+</code></pre>
+        <h3>2.1 Biological filter and dnesity plot</h3>
+        <p>
+            We apply a bological filter for cells with reads counts 
+            below 10, treating them as empty droplet.
+        </p>
+        <h3>2.2 Normalization: IterativeLSI</h3>
+        <p>
+            Please refer the ReadMe file at the GitHub repo for the parameter settins details.
+            Tuning parameters: <code>n_components</code> = 50, 100, or 150;&nbsp;
+            dropout ratios for low-enriched tiles: 90 %, 95 %, and 99 %.
+        </p>
+        <h3>2.3 Optional: Smooth Algorithm</h3>
+        <p>
+            When run the script with the <code>--smooth</code>, it enables
+            the smooth algorithm to impute the data.
+        </p>
 </div>
