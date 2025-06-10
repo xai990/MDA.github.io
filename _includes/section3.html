@@ -1,8 +1,17 @@
 <h2>3. UMAP Plots</h2>
 <p>
+    All of test parameters can be changed in the config file, the running script
+    command kept the same. For example, when we changed the n components for IterativeLSI algorithm,
+    we changed the <code>n_components</code> under the normalization to desariar number.
+    <code> 
+        python -m bin.dataprocessNplot --config &gtconfig file path&lt --matrix_file &gtmatrix file path&lt
+    </code>
+</p>
+<p>
     Initial experiment: retain all tile features and normalize the matrix with
     <code>n_components</code> set to 50, 100, and 150.
 </p>
+
 <img src="results/section3/alltile_vary_ncomp.png" width="672" alt="UMAP varying n_components">
 
 <p>
