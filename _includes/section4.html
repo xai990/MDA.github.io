@@ -49,6 +49,7 @@
     [drop=0.90] kept 20646/20646 tiles; var_features→2064
 </p>
 <img src="results/section4/miniread10_thresdhold100_drop0.9_smooth.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold100_drop0.9_nosmooth.png" width="300" alt="origin">
 
 <p>
     set the <code>threshold</code> to be <b>300</b>:<br>
@@ -64,6 +65,7 @@
     [drop=0.90] kept 20646/20646 tiles; var_features→2064
 </p>
 <img src="results/section4/miniread10_thresdhold300_drop0.9_smooth.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold300_drop0.9_nosmooth.png" width="300" alt="origin">
 
 <p>
     Set the <code>threshold</code> to be <b>500</b>:<br>
@@ -79,6 +81,7 @@
     [drop=0.90] kept 20646/20646 tiles; var_features→2064
 </p>
 <img src="results/section4/miniread10_thresdhold500_drop0.9_smooth.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold500_drop0.9_nosmooth.png" width="300" alt="origin">
 
 
 <h3>4.2 read another sample from pool2</h3>
@@ -101,6 +104,7 @@
     [drop=0.90] kept 20646/22780 tiles; var_features→2064
 </p>
 <img src="results/section4/miniread10_thresdhold100_drop0.9_smooth_pool2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold100_drop0.9_nosmooth_pool2.png" width="300" alt="origin">
 
 
 
@@ -118,6 +122,7 @@
     [drop=0.90] kept 20646/22780 tiles; var_features→2064
 </p>
 <img src="results/section4/miniread10_thresdhold300_drop0.9_smooth_pool2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold300_drop0.9_nosmooth_pool2.png" width="300" alt="origin">
 
 <p>
     set the <code>threshold</code> to be <b>500</b>:<br>
@@ -133,6 +138,7 @@
     [drop=0.90] kept 20646/22780 tiles; var_features→2064<br>
 </p>
 <img src="results/section4/miniread10_thresdhold500_drop0.9_smooth_pool2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold500_drop0.9_nosmooth_pool2.png" width="300" alt="origin">
 
 <h3>4.3 concatenate samples from pool1 and pool2</h3>
 <p><b>In the following experiment, we contatneate the K4 sample from pool1 and pool2
@@ -146,12 +152,13 @@
     The length of the totla reads:46052<br>
     The max of the reads:28983<br>
     [cell filter] keeping 1205 / 46052 cells (reads ≥ 100)<br>
-    [drop=0.90] kept 20646/34320 tiles; var_features→2064<br>
+    [drop=0.90] kept 34320/34320 tiles; var_features→3431<br>
     [smooth] building KNN graph (k=15) …<br>
-    [smooth] aggregating values …<br>
-    [drop=0.90] kept 20646/34320 tiles; var_features→2064
+    [smooth] aggregating values …
+
 </p>
 <img src="results/section4/miniread10_thresdhold100_drop0.9_smooth_pool1n2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold100_drop0.9_nosmooth_pool1n2.png" width="300" alt="origin">
 
 <p>
     set the <code>threshold</code> to be <b>300</b>:
@@ -161,12 +168,14 @@
     The length of the totla reads:46052<br>
     The max of the reads:28983<br>
     [cell filter]  keeping 685 / 46052 cells (reads ≥ 300)<br>
-    [drop=0.90] kept 20646/34320 tiles; var_features→2064<br>
+    [drop=0.90] kept 34320/34320 tiles; var_features→3431<br>
     [smooth] building KNN graph (k=15) …<br>
     [smooth] aggregating values …<br>
-    [drop=0.90] kept 20646/34320 tiles; var_features→2064
+    [drop=0.90] kept 34320/34320 tiles; var_features→3431
 </p>
 <img src="results/section4/miniread10_thresdhold300_drop0.9_smooth_pool1n2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold300_drop0.9_nosmooth_pool1n2.png" width="300" alt="origin">
+
 <p>
     set the <code>threshold</code> to be <b>500</b>:<br>
     The file information: ['results/tile_matrix_pool2_DJ_Hs_CM_0_K4me123_070122.bed.npz',
@@ -176,9 +185,10 @@
     The length of the total reads : 46052<br>
     The max of the reads : 28983<br>
     [cell filter] keeping 546 / 46052 cells (reads ≥ 500)<br>
-    [drop = 0.90] kept 20646 / 34320 tiles; var_features → 2064<br>
+    [drop = 0.90] kept 34320/34320 tiles; var_features→3431<br>
     [smooth] building KNN graph (k = 15)…<br>
     [smooth] aggregating values …<br>
-    [drop = 0.90] kept 20646 / 34320 tiles; var_features → 2064
+    [drop = 0.90] kept 34320/34320 tiles; var_features→3431
 </p>
 <img src="results/section4/miniread10_thresdhold500_drop0.9_smooth_pool1n2.png" width="300" alt="origin">
+<img src="results/section4/miniread10_thresdhold500_drop0.9_nosmooth_pool1n2.png" width="300" alt="origin">
