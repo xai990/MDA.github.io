@@ -1,0 +1,221 @@
+<h2>6. Input all bed files and apply single cell CUT&TAG data analysis </h2>
+<h3>Summary of work Done:</h3>
+<p>
+    1. complete data processing for all bed files using current python pipeline.<br>
+    2. Generate UMAP plots based on the tile matrix data.<br>
+    3. Compared Python-generated UMAP plots to the provided R version:<br>
+     - The R plots show clearer clustering, particularly distingushing healthy
+     dornor cells from engineered CAR-T cells.<br>
+     - python plots currently lack obvious cluter separation.
+</p>
+<img src="results/section6/allbedfiles_K4_python.png" width="280" alt="origin">
+<img src="results/section6/allbedfiles_K4_R.png" width="280" alt="origin">
+
+<h3>Current Focus and working Direction</h3>
+<p>
+    Address the clustering discrepancy and improve data interpretation.<br>
+    1. Reproduce the provided UMAP plots using ArchR.<br>
+    - The goal is to ensure the current data in correctly interpreted.<br>
+</p>
+<p>Issue: Only have the plots of Quality control but without IterativeLSI data plots</p>
+<img src="results/section6/cm0k4qualitycontrol.png" width="400" alt="origin">
+
+<p>
+    2. Validate ptyhon scripts on tutorial datasets<br>
+    - The goal is to test wheter the lack of clustering is specific to our<br>
+    dataset or a limitation of the current pipeline. 
+</p>
+<img src="results/section6/tutorialtest.png" width="400" alt="origin">
+
+
+<h3>Read paper and method exploration</h3>
+<p>
+    - SEACells paper<br>
+    - mcRigor paper <br>
+</p>
+
+<p>
+    Insights:
+    - Have a better understanding of why scEpigenomics datasets are inherently sparse.<br>
+    - The provided methods have been validated through downstream tasks like 
+    trajectory inference and cell state clustering.<br>
+    - Might be a suitable tool for testing on our dataset. 
+</p>
+<img src="results/section6/seacellcluter.png" width="400" alt="origin">
+
+<h3>Research Diirection</h3>
+<p>
+    Question: should we develop a new data processing pipeline to our CAR-T data or 
+    is it possible to adopt existing methods?
+</p>
+<p>
+    If the latter is acceptable, I have compiled a list of widely used single-cell 
+    ATAC-seq analysis frameworks in both Python and R. I plan to implement and 
+    benchmark them to evaluate their effectiveness in handling data sparsity.
+</p>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse; width:100%;">
+  <thead style="background:#f2f2f2;">
+    <tr>
+      <th>Tier / Category</th>
+      <th>Tool / Library</th>
+      <th>Language</th>
+      <th>What it does best</th>
+      <th>Typical why-and-when to use</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- End-to-end workbenches -->
+    <tr><td colspan="5" style="font-weight:bold; background:#eef7ff;">End-to-end workbenches</td></tr>
+
+    <tr>
+      <td></td>
+      <td><strong>ArchR</strong></td>
+      <td>R</td>
+      <td>Turn-key pipeline (QC → LSI → clustering → marker peaks → motif → trajectory → gene-score links). Handles &gt;1 M cells with an HDF5 back-end.</td>
+      <td>Your go-to if you want a single R environment that does almost everything and scales to large datasets.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>Signac (+ Seurat)</strong></td>
+      <td>R</td>
+      <td>Flexible object model treating ATAC, RNA, protein and spatial layers uniformly; rich plotting, easy label transfer, multiome support.</td>
+      <td>Ideal when your lab already uses Seurat for scRNA-seq and you want “ATAC the Seurat way”.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>SnapATAC v2</strong></td>
+      <td>Python</td>
+      <td>Fast I/O, on-disk sparse matrices, Harmony batch correction, interactive browser.</td>
+      <td>Great for very large datasets (100 k – 1 M cells) when you prefer Python.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>cisTopic (2 × flavors)</strong></td>
+      <td>R / Python</td>
+      <td>Topic-model view of accessibility (“topics” = regulatory programs); straightforward clustering &amp; region ranking.</td>
+      <td>Handy when you want probabilistic topics and a compact latent space to compare conditions.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>EpiScanpy</strong></td>
+      <td>Python</td>
+      <td>Scanpy-style AnnData wrapper for scATAC; supports LSI, differential peaks, joint ATAC + RNA.</td>
+      <td>Seamless if your ecosystem is already built around Scanpy.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>MAESTRO 2</strong></td>
+      <td>R / Python (CLI)</td>
+      <td>End-to-end Snakemake workflow (alignment → peaks → matrix → Harmony → GRN) with automatic HTML reports.</td>
+      <td>Choose when you want a reproducible pipeline that spits out QC &amp; downstream plots automatically.</td>
+    </tr>
+
+    <!-- Pipeline / CLI wrappers -->
+    <tr><td colspan="5" style="font-weight:bold; background:#eef7ff;">Pipeline / CLI wrappers</td></tr>
+
+    <tr>
+      <td></td>
+      <td><strong>scATAC-Pro</strong></td>
+      <td>Snakemake</td>
+      <td>Alignment → fragment → QC → clustering; modular; Docker image provided.</td>
+      <td>Easy “black-box” for routine processing on HPC clusters.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>Cell Ranger ATAC / ARC</strong></td>
+      <td>Rust + C++</td>
+      <td>Official 10x Genomics pipeline; fragments, peaks, basic clustering, TF motif calls.</td>
+      <td>Run first on 10x data, then export to ArchR/Signac for richer analysis.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>seq2science (ATAC workflow)</strong></td>
+      <td>Snakemake</td>
+      <td>Unified bulk + single-cell ATAC pipeline driven by YAML configs.</td>
+      <td>Nice if your group wants one declarative pipeline for multiple modalities.</td>
+    </tr>
+
+    <!-- Latent-space / deep-learning add-ons -->
+    <tr><td colspan="5" style="font-weight:bold; background:#eef7ff;">Latent-space / deep-learning add-ons</td></tr>
+
+    <tr>
+      <td></td>
+      <td><strong>PeakVI (scvi-tools)</strong></td>
+      <td>Python</td>
+      <td>Variational Bayes model; batch correction &amp; differential accessibility with uncertainty estimates.</td>
+      <td>Plug into a Scanpy workflow when you need strong batch removal or probabilistic DE-peaks.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>SCALE / SCALEX</strong></td>
+      <td>Python</td>
+      <td>Deep generative model for integrating multiple scATAC experiments; latent embedding &amp; peak imputation.</td>
+      <td>Useful for cross-species or multi-batch integration beyond linear methods.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>chromVAR</strong></td>
+      <td>R</td>
+      <td>Per-cell (or metacell) motif-deviation scores from raw counts.</td>
+      <td>Drop-in module inside ArchR/Signac for TF activity inference.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>Cicero (ATAC)</strong></td>
+      <td>R</td>
+      <td>Co-accessibility links between distal peaks and genes; builds putative cis-regulatory networks.</td>
+      <td>Run on top of ArchR/Signac objects to link enhancers to genes in sparse tissues.</td>
+    </tr>
+
+    <!-- Visualization / QC helpers -->
+    <tr><td colspan="5" style="font-weight:bold; background:#eef7ff;">Visualization / QC helpers</td></tr>
+
+    <tr>
+      <td></td>
+      <td><strong>IGV + ArchRBrowser</strong></td>
+      <td>GUI / Web</td>
+      <td>IGV for locus inspection; ArchRBrowser (<code>plotBrowserTrack()</code>) for interactive pseudo-bulk tracks.</td>
+      <td>Perfect for “look-and-feel” confirmation of peak quality and marker loci.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>cellxgene-VIP / Vitessce</strong></td>
+      <td>Web dashboards</td>
+      <td>Drag-and-drop AnnData/Seurat object; interactive UMAPs, violin plots, IGV-like track views.</td>
+      <td>Great for sharing results with collaborators who don’t code.</td>
+    </tr>
+
+    <!-- Multi-omic integration -->
+    <tr><td colspan="5" style="font-weight:bold; background:#eef7ff;">Multi-omic integration</td></tr>
+
+    <tr>
+      <td></td>
+      <td><strong>muon / Mudata</strong></td>
+      <td>Python</td>
+      <td>MuData container stores ATAC, RNA, protein, CRISPR layers; harmonizes preprocessing with Scanpy.</td>
+      <td>Pick when you have 10x Multiome or Paired-seq and want everything in one interoperable file.</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><strong>Seurat v5 multimodal</strong></td>
+      <td>R</td>
+      <td>Weighted nearest neighbor (WNN) integration of RNA + ATAC; joint clustering, label transfer, trajectory analysis.</td>
+      <td>Mature ecosystem—ideal for unified figures across modalities.</td>
+    </tr>
+
+  </tbody>
+</table>
