@@ -1,72 +1,71 @@
-<h2>7. Implement SEACell package for scEP data </h2>
-<h3>7.1 Summary of SEACell and its pipeline</h3>
+<h2>7. Implement the SEACell Package for scEP Data</h2>
+
+<h3>7.1 Overview of SEACell and Its Pipeline</h3>
 <p>
-    SEACell is a python script to solve single Cell
-    sparsity problem by integrating single cells to metacell.
-    The input file for the SEACell script a cell-peak matrix.
-    (In the SEACells paper, the cell-peak matrix was generated 
-    by ArchR.)
-    The output file is metacell that grouped by the SEACell model
+  SEACell is a Python tool designed to mitigate single-cell sparsity by aggregating individual cells into “metacells.”  
+  It takes as input a cell-by-peak matrix (in the SEACell paper, this matrix is generated using ArchR) and outputs a set of metacells grouped by the SEACell algorithm.
+</p>
+<p>
+  To install SEACell, please visit the  
+  <a href="https://github.com/dpeerlab/SEACells" target="_blank" rel="noopener noreferrer">
+    SEACell GitHub repository
+  </a>.
 </p>
 
+<h3>7.2 Preprocessing scTAG & CUT Data</h3>
 <p>
-    Please refer the 
-    <a
-        href="https://github.com/dpeerlab/SEACells"
-        target="_blank"
-        rel="noopener noreferrer"
-        >SEACell GitHub repo
-    </a>
-    page to install the package.
+  <strong>Note:</strong> Peaks are called using NFR fragments with a customized version of ArchR.  
+  You can find this custom ArchR build  
+  <a href="https://github.com/dpeerlab/SEACells" target="_blank" rel="noopener noreferrer">
+    here
+  </a>.
 </p>
 
-<h3>7.2 scTAG&CUT data preprocessing</h3>
-<p>
-    <b>
-        Notice: The author determine the
-        peak using NFR fragments with a customized ArchR version
-        that can be found
-        <a
-        href="https://github.com/dpeerlab/SEACells"
-        target="_blank"
-        rel="noopener noreferrer"
-        > here 
-        </a>.
-    </b>
-</p>
+<h4>Standard ArchR Installation</h4>
+<pre><code class="language-r">
+# Install devtools if needed
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
 
-<p>
-    ArchR installation:
-</p>
-<code>
-    library(devtools)
-    devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
-</code>
+# Install ArchR from GreenleafLab’s GitHub
+devtools::install_github(
+  "GreenleafLab/ArchR",
+  ref    = "master",
+  repos  = BiocManager::repositories()
+)
+</code></pre>
 
-<p>
-    Update your ArchR with the customized version (The customized version can be found above with GitHub link)
-</p>
+<p>Next, install the customized ArchR version:</p>
 
-<code>
-# 1 make sure BiocManager is installed
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
+<pre><code class="language-r">
+# 1. Ensure BiocManager is installed
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+  install.packages("BiocManager")
+}
 
-# 2 install the missing Bioconductor packages
+# 2. Install required Bioconductor packages
 BiocManager::install(c(
   "motifmatchr",
   "chromVAR",
   "ComplexHeatmap"
 ))
 
-# 3 (re)install ArchR from GitHub
-if (!requireNamespace("devtools", quietly=TRUE))
-    install.packages("devtools")
+# 3. (Re)install the customized ArchR build
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
 
 devtools::install_github(
   "dpeerlab/ArchR",
-  lib = "/home/xai/R/x86_64-pc-linux-gnu-library/4.3",
+  lib   = "/home/xai/R/x86_64-pc-linux-gnu-library/4.3",
   repos = BiocManager::repositories()
 )
+</code></pre>
 
-</code>
+<p>
+  <strong>Important:</strong>  
+  The customized ArchR may not be fully compatible with the upstream release, as upstream ArchR may receive updates that the custom build lacks.  
+  Projects saved with the original ArchR functions will not load under the customized version.  
+  To avoid incompatibilities, rerun <code>createArrowFiles()</code> and re-save your ArchR project using the customized build.
+</p>
