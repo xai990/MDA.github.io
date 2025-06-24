@@ -12,7 +12,7 @@
   </a>.
 </p>
 
-<h3>7.2 Preprocessing scTAG & CUT Data</h3>
+<h3>7.2 Customized ArchR Installation</h3>
 <p>
   <strong>Note:</strong> Peaks are called using NFR fragments with a customized version of ArchR.  
   You can find this custom ArchR build  
@@ -63,9 +63,195 @@ devtools::install_github(
 )
 </code></pre>
 
+<h3>7.3 Preprocessing scTAG & CUT Data</h3>
+<h4>Data files</h4>
+<p>
+    1. ATAC fragments file. Example: DJ_Hs_CM_0_K4me123_070122.bed.gz <br> 
+    2. Index for the fragments file. Example: DJ_Hs_CM_0_K4me123_070122.bed.gz.tbi <br>
+</p>
+<h4>Creat the cell-peak file for SEACell script</h4>
+<p>Create An ArchR project with above files</p>
 <p>
   <strong>Important:</strong>  
   The customized ArchR may not be fully compatible with the upstream release, as upstream ArchR may receive updates that the custom build lacks.  
   Projects saved with the original ArchR functions will not load under the customized version.  
   To avoid incompatibilities, rerun <code>createArrowFiles()</code> and re-save your ArchR project using the customized build.
 </p>
+<pre><code class="language-r">
+library(ArchR)
+library(parallel)
+addArchRGenome(genome = "hg38")
+library(rtracklayer)
+library(ggplot2)
+library(patchwork)
+set.seed(202212)
+library(dplyr)
+library(data.table)
+library(viridis)
+library(magrittr)
+
+addArchRThreads(threads = 16) 
+
+set.seed(20221229)
+
+
+setwd('/rsrch8/home/bcb/xai/Rscript/SEACells')
+inputFiles &lt;- structure(
+  c(
+    'bed/pool1/DJ_Hs_CM_0_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_CM_1_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_CM_2_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_CM_3_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_CM_0_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_CM_1_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_CM_2_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_CM_3_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_EM_0_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_EM_1_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_EM_2_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_EM_3_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_EM_0_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_EM_1_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_EM_2_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_EM_3_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_D6_CD8_K4me123_070122.bed.gz',
+    'bed/pool1/DJ_Hs_D7_CD8_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_D6_CD8_K4me123_070122.bed.gz',
+    'bed/pool2/DJ_Hs_D7_CD8_K4me123_070122.bed.gz'
+    ),
+  .Names = c(
+    'CM_0_K4me123_R1_300',
+    'CM_1_K4me123_R1_300',
+    'CM_2_K4me123_R1_300',
+    'CM_3_K4me123_R1_300',
+    'CM_0_K4me123_R2_300',
+    'CM_1_K4me123_R2_300',
+    'CM_2_K4me123_R2_300',
+    'CM_3_K4me123_R2_300',
+    'EM_0_K4me123_R1_300',
+    'EM_1_K4me123_R1_300',
+    'EM_2_K4me123_R1_300',
+    'EM_3_K4me123_R1_300',
+    'EM_0_K4me123_R2_300',
+    'EM_1_K4me123_R2_300',
+    'EM_2_K4me123_R2_300',
+    'EM_3_K4me123_R2_300',
+    'D6_CD8_K4me123_R1_300',
+    'D7_CD8_K4me123_R1_300',
+    'D6_CD8_K4me123_R2_300',
+    'D7_CD8_K4me123_R2_300'
+  )  
+)
+
+ArrowFiles &lt;- createArrowFiles(
+  inputFiles = inputFiles,
+  sampleNames = names(inputFiles),
+  filterTSS = 4, #Dont set this too high because you can always increase later
+  minFrags = 300, 
+  addTileMat = TRUE,
+  addGeneScoreMat = TRUE,
+  TileMatParams = list(tileSize=50000,binarize=FALSE)
+)
+
+
+ArrowFiles = paste0(c(
+    'CM_0_K4me123_R1_300',
+    'CM_1_K4me123_R1_300',
+    'CM_2_K4me123_R1_300',
+    'CM_3_K4me123_R1_300',
+    'CM_0_K4me123_R2_300',
+    'CM_1_K4me123_R2_300',
+    'CM_2_K4me123_R2_300',
+    'CM_3_K4me123_R2_300',
+    'EM_0_K4me123_R1_300',
+    'EM_1_K4me123_R1_300',
+    'EM_2_K4me123_R1_300',
+    'EM_3_K4me123_R1_300',
+    'EM_0_K4me123_R2_300',
+    'EM_1_K4me123_R2_300',
+    'EM_2_K4me123_R2_300',
+    'EM_3_K4me123_R2_300',
+    'D6_CD8_K4me123_R1_300',
+    'D7_CD8_K4me123_R1_300',
+    'D6_CD8_K4me123_R2_300',
+    'D7_CD8_K4me123_R2_300'
+    ), ".arrow")
+
+proj &lt;- ArchRProject(
+  ArrowFiles = ArrowFiles, 
+  outputDirectory = "scCUT",
+  copyArrows = TRUE #This is recommened so that you maintain an unaltered copy for later usage.
+)
+saveArchRProject(proj)
+
+</code></pre>
+
+<p>
+    Create the cell-peak matrix based on NFR fragments
+</p>
+
+<pre><code class="language-r">
+# PARAMETERS
+library(ArchR)
+set.seed(1)
+
+
+# Configure
+addArchRThreads(threads = 1)
+addArchRGenome('hg38')
+proj_name &lt;- "proprocessing"
+# Load project
+
+proj &lt;- loadArchRProject("scCUT")
+
+# PReprocesing
+# SVD, Clustering, UMAP
+proj &lt;- addIterativeLSI(ArchRProj = proj, useMatrix = "TileMatrix",
+                       name = "IterativeLSI")
+
+# GEne scores with selected features
+# Artificial black list to exclude all non variable features
+chrs &lt;- getChromSizes(proj)
+var_features &lt;- proj@reducedDims[["IterativeLSI"]]$LSIFeatures
+var_features_gr &lt;- GRanges(var_features$seqnames, IRanges(var_features$start, var_features$start + 500))
+blacklist &lt;- setdiff(chrs, var_features_gr)
+proj &lt;- addGeneScoreMatrix(proj, matrixName='GeneScoreMatrix', force=TRUE, blacklist=blacklist)
+
+# Peaks using NFR fragments
+proj &lt;- addClusters(input = proj, reducedDims = "IterativeLSI")
+proj &lt;- addGroupCoverages(proj, maxFragmentLength=147)
+proj &lt;- addReproduciblePeakSet(proj)
+# Counts
+proj &lt;- addPeakMatrix(proj, maxFragmentLength=147, ceiling=10^9)
+
+# Save
+proj &lt;- saveArchRProject(ArchRProj = proj)
+
+# Export
+dir.create(sprintf("%s/export", proj_name))
+write.csv(getReducedDims(proj), sprintf('%s/export/svd.csv', proj_name), quote=FALSE)
+write.csv(getCellColData(proj), sprintf('%s/export/cell_metadata.csv', proj_name), quote=FALSE)
+
+# Peak counts
+peaks &lt;- getPeakSet(proj)
+peak.counts &lt;- getMatrixFromProject(proj, 'PeakMatrix')
+
+# Reorder peaks
+# Chromosome order
+chr_order &lt;- sort(seqlevels(peaks))
+reordered_features &lt;- list()
+for(chr in chr_order)
+    reordered_features[[chr]] = peaks[seqnames(peaks) == chr]
+reordered_features &lt;- Reduce("c", reordered_features)
+
+# Export counts
+dir.create(sprintf("%s/export/peak_counts", proj_name))
+counts &lt;- assays(peak.counts)[['PeakMatrix']]
+writeMM(counts, sprintf('%s/export/peak_counts/counts.mtx', proj_name))
+write.csv(colnames(peak.counts), sprintf('%s/export/peak_counts/cells.csv', proj_name), quote=FALSE)
+names(reordered_features) &lt;- sprintf("Peak%d", 1:length(reordered_features))
+write.csv(as.data.frame(reordered_features), sprintf('%s/export/peak_counts/peaks.csv', proj_name), quote=FALSE)
+
+</code></pre>
+
+<p>Load Resutls from ArchR to generate an Anndata object</p>
