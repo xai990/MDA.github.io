@@ -19,3 +19,54 @@
     </a>
     page to install the package.
 </p>
+
+<h3>7.2 scTAG&CUT data preprocessing</h3>
+<p>
+    <b>
+        Notice: The author determine the
+        peak using NFR fragments with a customized ArchR version
+        that can be found
+        <a
+        href="https://github.com/dpeerlab/SEACells"
+        target="_blank"
+        rel="noopener noreferrer"
+        > here 
+        </a>.
+    </b>
+</p>
+
+<p>
+    ArchR installation:
+</p>
+<code>
+    library(devtools)
+    devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
+</code>
+
+<p>
+    Update your ArchR with the customized version (The customized version can be found above with GitHub link)
+</p>
+
+<code>
+# 1 make sure BiocManager is installed
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+
+# 2 install the missing Bioconductor packages
+BiocManager::install(c(
+  "motifmatchr",
+  "chromVAR",
+  "ComplexHeatmap"
+))
+
+# 3 (re)install ArchR from GitHub
+if (!requireNamespace("devtools", quietly=TRUE))
+    install.packages("devtools")
+
+devtools::install_github(
+  "dpeerlab/ArchR",
+  lib = "/home/xai/R/x86_64-pc-linux-gnu-library/4.3",
+  repos = BiocManager::repositories()
+)
+
+</code>
