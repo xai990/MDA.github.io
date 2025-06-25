@@ -6,6 +6,27 @@
   It takes as input a cell-by-peak matrix (in the SEACell paper, this matrix is generated using ArchR) and outputs a set of metacells grouped by the SEACell algorithm.
 </p>
 <p>
+  There are five main steps in the SEACell pipeline:
+  <ol>
+    <li>
+      Normalize data with TF-IDF, reduce the dimension with SVD, and constuct the KNN graph to represent the phenotypic mainfold
+    </li>
+    <li>
+      Compute the affinity matrix of cell-to-cell simiarity, transform 
+      the Euclidean distances between cells into a Gaussian kernel.
+    </li>
+    <li>
+      Implement archetypal analysis: a archetype matrix (B) and a membership matrix (A) -- M = ZA; Z=MB
+    </li>
+    <li>
+      Aggregate single-cell raw counts to build a metacellxcount matrix.
+    </li>
+    <li>
+      Normalize count matrix for downstream analysis.
+    </li>
+  </ol>
+</p>
+<p>
   To install SEACell, please visit the  
   <a href="https://github.com/dpeerlab/SEACells" target="_blank" rel="noopener noreferrer">
     SEACell GitHub repository
@@ -65,10 +86,16 @@ devtools::install_github(
 
 <h3>7.3 Preprocessing scTAG & CUT Data</h3>
 <h4>Data files</h4>
-<p>
-    1. ATAC fragments file. Example: DJ_Hs_CM_0_K4me123_070122.bed.gz <br> 
-    2. Index for the fragments file. Example: DJ_Hs_CM_0_K4me123_070122.bed.gz.tbi <br>
-</p>
+<ol>
+  <li>
+    <strong>ATAC fragments file</strong> (<code>.bed.gz</code>)<br>
+    Example: <code>DJ_Hs_CM_0_K4me123_070122.bed.gz</code>
+  </li>
+  <li>
+    <strong>Index file for the fragments</strong> (<code>.tbi</code>)<br>
+    Example: <code>DJ_Hs_CM_0_K4me123_070122.bed.gz.tbi</code>
+  </li>
+</ol>
 <h4>Creat the cell-peak file for SEACell script</h4>
 <p>Create An ArchR project with above files</p>
 <p>
@@ -189,7 +216,10 @@ saveArchRProject(proj)
 <p>
     Create the cell-peak matrix based on NFR fragments
 </p>
-
+<p>
+  <strong>Important:</strong> The customized ArchR does not support 
+  parallel computing, please set the thread number to . 
+</p>
 <pre><code class="language-r">
 # PARAMETERS
 library(ArchR)
