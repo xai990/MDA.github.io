@@ -1,0 +1,44 @@
+<h2>8. Week Jun 26 </h2>
+<h3>8.1 Overview of week tasks</h3>
+<p>
+    - Identify and remove outliers, comparing Arrow files created with a minFrags setting of 300 versus 500 (Notice that how many cells has been dropped).
+    - Obtain the bin-by-cell matrix that uses the same bins as the UMAP plot.
+    - Construct the baseline aggregation algorithm and evaluate the results.
+    - Build an AnnData object to test the SEACells model and visualize the results.
+    - Run the same pipeline with K27 data.
+</p>
+
+<h3>8.2 Identify and remove outliers</h3>
+<p>
+    1. Create the Arrow files with 300 minFrags setting. (done)
+    2. Indentify the outlier by unsupervised clustering.
+</p>
+<p>
+    The experiment was performed with two different minFrags settings: 300 and 500.
+    The results show that the number of cells kept after removing outliers is similar.
+    The table below summarizes the results for both settings.
+</p>
+<table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Minifrags</th>
+      <th>cells</th>
+      <th>kept cells</th>
+      <th>remove outlier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>300</td>
+      <td>9372</td>
+      <td>9351</td>
+      <td>-21</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>5903</td>
+      <td>5894</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
