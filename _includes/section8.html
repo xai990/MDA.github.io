@@ -1,77 +1,55 @@
-<h2>8. Week Jun 26 </h2>
-<h3>8.1 Overview of week tasks</h3>
-<p>
-    - Identify and remove outliers, comparing Arrow files created with a minFrags setting of 300 versus 500 (Notice that how many cells has been dropped).
-    - Obtain the bin-by-cell matrix that uses the same bins as the UMAP plot.
-    - Construct the baseline aggregation algorithm and evaluate the results.
-    - Build an AnnData object to test the SEACells model and visualize the results.
-    - Run the same pipeline with K27 data.
-</p>
+<h2>8. &nbsp;Week Jun 26 </h2>
+<h3>8.1&nbsp; Overview of week tasks</h3>
+<ul>
+  <li>Create Arrow files with <code>minFrags</code> = 300 and 500, noting how many cells are discarded.</li>
+  <li>Generate a bin-by-cell matrix that uses the same genomic bins as the UMAP plot.</li>
+  <li>Implement a baseline aggregation algorithm and evaluate its performance.</li>
+  <li>Build an <code>AnnData</code> object, run the SEACells model, and visualize the results.</li>
+  <li>Repeat the entire pipeline on H3K27 data.</li>
+</ul>
 
-<h3>8.2 Identify and remove outliers</h3>
+<h3>8.2 &nbsp;Identify and remove outliers</h3>
+<ol>
+  <li>Generate Arrow files with <code>minFrags = 300/500</code> ✓</li>
+  <li>Detect outliers via unsupervised clustering.</li>
+</ol>
+
 <p>
-    1. Create the Arrow files with 300 minFrags setting. (done)
-    2. Indentify the outlier by unsupervised clustering.
-</p>
-<p>
-    The experiment was performed with two different minFrags settings: 300 and 500.
-    The results show that the number of cells kept after removing outliers is similar.
-    The table below summarizes the results for both settings.
+  The experiment compared two <code>minFrags</code> thresholds (300 vs&nbsp;500).  
+  After removing outliers, the number of retained cells is similar across settings:
 </p>
 <table border="1" cellpadding="4" cellspacing="0">
   <thead>
     <tr>
-      <th>Minifrags</th>
-      <th>cells</th>
-      <th>remove outlier</th>
-      <th>kept cells</th>
+      <th>Dataset</th>
+      <th>Total&nbsp;cells</th>
+      <th>Outliers&nbsp;removed</th>
+      <th>Cells&nbsp;kept</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>K4_300</td>
-      <td>9372</td>
-      <td>160</td>
-      <td>9212</td>
-    </tr>
-    <tr>
-      <td>K27_300</td>
-      <td>10024</td>
-      <td>178</td>
-      <td>9846</td>
-    </tr>
-    <tr>
-      <td>K4_500</td>
-      <td>5903</td>
-      <td>9</td>
-      <td>5894</td>
-    </tr>
-
-    <tr>
-      <td>K27_500</td>
-      <td>10017</td>
-      <td>182</td>
-      <td>9835</td>
-    </tr>
+    <tr><td>K4&nbsp;300</td><td>9 372</td><td>160</td><td>9 212</td></tr>
+    <tr><td>K27&nbsp;300</td><td>10 024</td><td>178</td><td>9 846</td></tr>
+    <tr><td>K4&nbsp;500</td><td>5 903</td><td>9</td><td>5 894</td></tr>
+    <tr><td>K27&nbsp;500</td><td>10 017</td><td>182</td><td>9 835</td></tr>
   </tbody>
 </table>
 
 <p>
-  Here is the UMAP plot of the K4 cells with minFrags set to 300, where the outliers are highlighted in red.
+  <strong>K4, <code>minFrags = 300</code></strong>: outliers (red) before and after removal.
 </p>
 <img src="results/section8/minfrag300_K4_identify_outliers.png" width="500" alt="origin">
 <img src="results/section8/minfrag300_K4_removeoutliers_umap.png" width="500" alt="origin">
 
 <p>
-  Here is the UMAP plot of the K27 cells with minFrags set to 300, where the outliers are highlighted in red.
+  <strong>K27, <code>minFrags = 300</code></strong>: outliers (red) before and after removal.
 </p>
 <img src="results/section8/minfrag300_K27_identify_outliers.png" width="500" alt="origin">
 <img src="results/section8/minfrag300_K27_removeoutliers_umap.png" width="500" alt="origin">
 
 
 <h3>8.3 Obtain the bin-by-cell matrix that uses the same bins as the UMAP plot.</h3>
-<p>
-  1. Generated the bin-by-cell matrix using the same bins as the UMAP plot
-  that can be loaded with python code. 
-  2. Build the aggregation algorithm to obtain the baseline results.
-</p>
+<ol>
+  <li>Produce a Python-readable bin-by-cell matrix using the same bins as the UMAP.</li>
+  <li>Build and benchmark the baseline aggregation algorithm.</li>
+</ol>
