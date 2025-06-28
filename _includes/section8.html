@@ -48,8 +48,75 @@
 <img src="results/section8/minfrag300_K27_removeoutliers_umap.png" width="500" alt="origin">
 
 
-<h3>8.3 Obtain the bin-by-cell matrix that uses the same bins as the UMAP plot.</h3>
+<h3>8.3&nbsp;Generate a bin-by-cell matrix that matches the UMAP bins</h3>
+
 <ol>
-  <li>Produce a Python-readable bin-by-cell matrix using the same bins as the UMAP.</li>
-  <li>Build and benchmark the baseline aggregation algorithm.</li>
+  <li>Create a Python-readable bin-by-cell matrix using exactly the bins shown in the UMAP plot.</li>
+  <li>Implement and benchmark a baseline aggregation algorithm.</li>
 </ol>
+
+<p>The matrix is derived from an ArchR project via the following pipeline:</p>
+<ol>
+  <li>Load the ArchR project.</li>
+  <li>Normalize the data and compute UMAP embeddings.</li>
+  <li>Detect outliers with unsupervised clustering (<code>DBSCAN</code>) and remove them.</li>
+  <li>Save the subsetted project.</li>
+  <li>Export the bin-by-cell matrix with <code>getMatrixFromProject()</code>.</li>
+  <li>Save accompanying data: UMAP coordinates, metadata, and bin annotations.</li>
+</ol>
+
+<ul>
+  <li><strong>Matrix type :</strong> bin-by-cell</li>
+  <li><strong>Cells :</strong> 9 212 (K4) and&nbsp;9 846 (K27)</li>
+  <li><strong>Values :</strong> fragment counts per bin per cell</li>
+</ul>
+
+<p>Next, a Python script converts the exported matrix into an <code>AnnData</code> object and writes it to disk.</p>
+
+<p>Example summary of the resulting object:</p>
+<pre>
+AnnData object with n_obs × n_vars = 9 198 × 60 630
+    obs: 'Sample', 'TSSEnrichment', 'ReadsInTSS', 'ReadsInPromoter',
+         'ReadsInBlacklist', 'PromoterRatio', 'PassQC', 'NucleosomeRatio',
+         'nMultiFrags', 'nMonoFrags', 'nFrags', 'nDiFrags',
+         'DoubletScore', 'DoubletEnrichment', 'BlacklistRatio',
+         'Clusters', 'leiden'
+    var: 'chrom', 'start', 'end', 'highly_variable', 'means',
+         'dispersions', 'dispersions_norm'
+    uns: 'leiden', 'leiden_colors', 'neighbors', 'umap',
+         'Clusters_colors', 'log1p', 'hvg', 'pca'
+    obsm: 'X_svd', 'X_umap', 'X_pca'
+    varm: 'PCs'
+    obsp: 'connectivities', 'distances'
+</pre>
+
+<p>
+Visualizing this object in Scanpy (UMAP + Leiden clustering) confirms that the
+structure mirrors the original ArchR results.
+</p>
+<img src="results/section8/scanpyK4.png" width="500" alt="origin">
+
+
+<h3>8.4 Run SEACells with AnnData</h3>
+<p>
+  (need to atttached the code later)
+</p>
+
+<p>
+  The SEACells model was run on the <code>AnnData</code> object, and the results were visualized.
+  The SEACells model parameters were set as follows:
+  1. <code>n_SEACells = 50</code> # Number of SEACells to generate
+  2. <code>build_kernel_on = 'X_svd'</code> # Use SVD coordinates for kernel building
+  3. <code>n_waypoint_eigs = 10</code> # Number of eigenvalues to consider when initializing metacells
+</p>
+
+<p>
+  The SEACells model initializes the metacells shown in the UMAP plot below.
+</p>
+<img src="results/section8/metacellinitializationn90w10umap.png" width="500" alt="origin">
+
+<p>
+  The SEACells model assigns the metacells shown in the UMAP plot below.
+</p>
+<img src="results/section8/metacellassignmentumap.png" width="500" alt="origin">
+<img src="results/section8/metacellassignmentumapcolor.png" width="500" alt="origin">
