@@ -97,26 +97,24 @@ structure mirrors the original ArchR results.
 <img src="results/section8/scanpyK4.png" width="500" alt="origin">
 
 
-<h3>8.4 Run SEACells with AnnData</h3>
-<p>
-  (need to atttached the code later)
-</p>
+<!-- 8.4 ▸ Run SEACells on the AnnData object -->
+<h3>8.4&nbsp;Run SEACells with <code>AnnData</code></h3>
 
-<p>
-  The SEACells model was run on the <code>AnnData</code> object, and the results were visualized.
-  The SEACells model parameters were set as follows:
-  1. <code>n_SEACells = 50</code> # Number of SEACells to generate
-  2. <code>build_kernel_on = 'X_svd'</code> # Use SVD coordinates for kernel building
-  3. <code>n_waypoint_eigs = 10</code> # Number of eigenvalues to consider when initializing metacells
-</p>
+<p><em>(Code will be attached later.)</em></p>
 
-<p>
-  The SEACells model initializes the metacells shown in the UMAP plot below.
-</p>
-<img src="results/section8/metacellinitializationn90w10umap.png" width="500" alt="origin">
+<p>The SEACells model was executed on the <code>AnnData</code> object with the following parameters:</p>
+<ol>
+  <li><code>n_SEACells = 50</code> &mdash; number of metacells to generate.</li>
+  <li><code>build_kernel_on = 'X_svd'</code> &mdash; build the affinity kernel on SVD coordinates.</li>
+  <li><code>n_waypoint_eigs = 10</code> &mdash; eigenvectors used to initialize the metacells.</li>
+</ol>
 
-<p>
-  The SEACells model assigns the metacells shown in the UMAP plot below.
+<p>The initialization of metacells is shown in the UMAP plot below:</p>
+<img src="results/section8/metacellinitializationn90w10umap.png"
+     width="500"
+     alt="UMAP showing initial metacells">
+
+<p>The final SEACells assignments are visualized in the next UMAP plot.</p>
 </p>
 <img src="results/section8/metacellassignmentumap.png" width="500" alt="origin">
 <img src="results/section8/metacellassignmentumapcolor.png" width="500" alt="origin">
