@@ -104,17 +104,34 @@ structure mirrors the original ArchR results.
 
 <p>The SEACells model was executed on the <code>AnnData</code> object with the following parameters:</p>
 <ol>
-  <li><code>n_SEACells = 50</code> &mdash; number of metacells to generate.</li>
+  <li><code>n_SEACells = 1000</code> &mdash; number of metacells to generate.</li>
   <li><code>build_kernel_on = 'X_svd'</code> &mdash; build the affinity kernel on SVD coordinates.</li>
   <li><code>n_waypoint_eigs = 10</code> &mdash; eigenvectors used to initialize the metacells.</li>
 </ol>
 
-<p>The initialization of metacells is shown in the UMAP plot below:</p>
-<img src="results/section8/metacellinitializationn90w10umap.png"
-     width="500"
-     alt="UMAP showing initial metacells">
+<p><strong>K4 — initialization:</strong> metacell seeds in UMAP space.</p>
+<img src="results/section8/seacellinitK41000.png" width="500" alt="UMAP showing initial metacells">
 
-<p>The final SEACells assignments are visualized in the next UMAP plot.</p>
+<p><strong>K4 — final SEACells:</strong> metacell assignments after convergence.</p>
+<img src="results/section8/seacellaggregateK41000.png" width="500" alt="origin">
+
+<p><strong>K27 — initialization:</strong> metacell seeds in UMAP space.</p>
+<img src="results/section8/seacellinitK271000.png" width="500" alt="UMAP showing initial metacells">
+
+<p><strong>K27 — final SEACells:</strong> metacell assignments after convergence.</p>
 </p>
-<img src="results/section8/metacellassignmentumap.png" width="500" alt="origin">
-<img src="results/section8/metacellassignmentumapcolor.png" width="500" alt="origin">
+<img src="results/section8/seacellaggregateK271000.png" width="500" alt="origin">
+
+
+<h3>8.5&nbsp;Aggregate scEP data with an unsupervised algorithm</h3>
+<p>
+  As a baseline, we applied <code>k</code>-means clustering.  
+  Cells grouped into the same cluster were treated as a single metacell and compared with the SEACells output.
+</p>
+
+<p><strong>Baseline results &mdash; K4:</strong></p>
+
+<img src="results/section8/kmeansaggregateK41000.png" width="500" alt="origin">
+
+<p><strong>Baseline results &mdash; K27:</strong></p>
+<img src="results/section8/kmeansaggregateK271000.png" width="500" alt="origin">
