@@ -1,0 +1,24 @@
+<h2>9. &nbsp;Week Jul 3 </h2>
+<h3>9.1&nbsp; Overview of week tasks</h3>
+<ul>
+  <li>Adjust the UMAP color scheme to highlight trajectories across samples and time-points.</li>
+  <li>In data preprocessing, retain only informative tiles (≥ 10 fragments).</li>
+  <li>Run the SEACells model on each individual sample instead of on the full dataset.</li>
+  <li>Perform a parameter sweep: metacell ratio, PCA dimensions, and UMAP settings.</li>
+  <li>Compare PCA-based normalization with TF-IDF normalization.</li>
+  <li>Paper Reading.</li>
+</ul>
+
+<h3>9.2 &nbsp;Adjust UMAP color scheme</h3>
+<p>
+    To enhance the visualization of trajectories across samples and time-points, 
+    we will modify the UMAP color scheme. This involves selecting a color palette that effectively
+    distinguishes between different samples and time-points, allowing for a clearer interpretation of the data.
+    The color for the same sample should be consistent color like blue, while different timepoints should 
+    be represented by different shades of the same color, such as light blue for earlier time-points and dark blue for later ones.
+</p>
+<p>The verbose parameter <code>verbose=TRUE</code> can be used to obtain more detailed output during the UMAP computation.</p>
+<p><code>verbose=False</code></p>
+<img src="results/section9/metacellplot_ctNtp.png" width="500" alt="origin">
+<p><code>verbose=True</code></p>
+<img src="results/section9/metacellplot_ctNtp_verbose.png" width="500" alt="origin">
