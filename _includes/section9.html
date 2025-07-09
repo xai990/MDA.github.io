@@ -42,6 +42,7 @@
 <ol>
   <li>Create a separate ArchR project for each sample; samples from different pools but the same cell type and time-point are merged.</li>
   <li>Pre-process each project, remove outliers, and compute the tile and latent matrices via iterative LSI.</li>
+  <p>Note: we use dbscan to remove the outliers, for each individual sample we need to find the proper parameters</p>
   <li>Run SEACells on each exported tile matrix and latent matrix.</li>
   <li>Collect SEACells outputs and convert them into an <code>AnnData</code> object.</li>
   <li>Produce visualisations of the resulting metacells.</li>
