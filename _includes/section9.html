@@ -1,79 +1,113 @@
-<h2>9. &nbsp;Week Jul 3 </h2>
-<h3>9.1&nbsp; Overview of week tasks</h3>
+<!-- 9 ▸ Week of 3 July -->
+<h2>9.&nbsp;Week&nbsp;of&nbsp;3&nbsp;July</h2>
+
+<!-- 9.1 ▸ Weekly tasks -->
+<h3>9.1&nbsp;Overview of weekly tasks</h3>
 <ul>
-  <li>Adjust the UMAP color scheme to highlight trajectories across samples and time-points.</li>
-  <li>In data preprocessing, retain only informative tiles (≥ 10 fragments).</li>
-  <li>Run the SEACells model on each individual sample instead of on the full dataset.</li>
-  <li>Perform a parameter sweep: metacell ratio, PCA dimensions, and UMAP settings.</li>
-  <li>Compare PCA-based normalization with TF-IDF normalization.</li>
-  <li>Paper Reading.</li>
+  <li>Adjust the UMAP colour scheme to highlight trajectories across samples and time-points.</li>
+  <li>During preprocessing, keep only informative tiles (≥ 10 fragments).</li>
+  <li>Run the SEACells model on each individual sample rather than on the full dataset.</li>
+  <li>Perform a parameter sweep: metacell ratio, PCA dimensionality, and UMAP settings.</li>
+  <li>Compare per-cell PCA normalization with TF-IDF normalization.</li>
+  <li>Literature review.</li>
 </ul>
 
-<h3>9.2 &nbsp;Adjust UMAP color scheme</h3>
+<!-- 9.2 ▸ UMAP colour scheme -->
+<h3>9.2&nbsp;Adjust UMAP colour scheme</h3>
 <p>
-    To enhance the visualization of trajectories across samples and time-points, 
-    we will modify the UMAP color scheme. This involves selecting a color palette that effectively
-    distinguishes between different samples and time-points, allowing for a clearer interpretation of the data.
-    The color for the same sample should be consistent, such as blue, while different timepoints should be 
-    represented by different shades of that same color, such as light blue for earlier time-points and dark blue for later ones.
-</p>
-<p>The verbose parameter <code>verbose=TRUE</code> can be used to obtain more detailed output during the UMAP computation.</p>
-<p><code>verbose=False</code></p>
-<img src="results/section9/metacellplot_ctNtp.png" width="500" alt="origin">
-<p><code>verbose=True</code></p>
-<img src="results/section9/metacellplot_ctNtp_verbose.png" width="500" alt="origin">
-
-<h3>9.3 &nbsp;Data preprocessing</h3>
-<p>
-    The tile features was filtered by <code>addIterativeLSI</code> function in the ArchR package <code>R</code>.
-</p>
-<p>
-    In the python script, we apply a In the Python script, we apply a sc.pp.highly_variable_genes function to retain only informative tiles.
+  To improve trajectory visualisation, we adopted a palette in which each sample has a distinct base colour
+  (e.g.&nbsp;blue) and its time-points are represented by graduated shades (light → dark).
 </p>
 
-<h3>9.4 &nbsp;Run SEACells model on individual samples</h3>
+<p><code>verbose = FALSE</code></p>
+<img src="results/section9/metacellplot_ctNtp.png"
+     width="500"
+     alt="UMAP coloured by sample/time-point (quiet mode)">
 
-<h3>9.5 &nbsp;Parameter sweep</h3>
+<p><code>verbose = TRUE</code></p>
+<img src="results/section9/metacellplot_ctNtp_verbose.png"
+     width="500"
+     alt="UMAP coloured by sample/time-point (verbose mode)">
 
+<!-- 9.3 ▸ Data preprocessing -->
+<h3>9.3&nbsp;Data preprocessing</h3>
 <p>
-    We set the n_neighbors parameter from 5 to 90, and the min_dist parameter from 0.1 to 0.9.
-    Try different highly_variable_genes parameters, from 3000 to 20000.
-    Adjust the umap plot to show only one sample at a time but time-points trajectories are in a row plot.
+  In R (ArchR) we filtered tile features with <code>addIterativeLSI()</code>.
+  In Python we applied <code>sc.pp.highly_variable_genes()</code> to retain only informative tiles.
 </p>
+
+<!-- 9.4 ▸ SEACells per sample -->
+<h3>9.4&nbsp;Run SEACells on individual samples</h3>
+<!-- (Details to be added) -->
+<ol>
+  <li>Create a separate ArchR project for each sample; samples from different pools but the same cell type and time-point are merged.</li>
+  <li>Pre-process each project, remove outliers, and compute the tile and latent matrices via iterative LSI.</li>
+  <li>Run SEACells on each exported tile matrix and latent matrix.</li>
+  <li>Collect SEACells outputs and convert them into an <code>AnnData</code> object.</li>
+  <li>Produce visualisations of the resulting metacells.</li>
+</ol>
+<!-- 9.5 ▸ Parameter sweep -->
+<h3>9.5&nbsp;Parameter sweep</h3>
 <p>
-    Write a bash script to run plot with different config file. 
+  We varied <code>n_neighbors</code> (5 → 90), <code>min_dist</code> (0.1 → 0.9), and
+  the number of highly variable genes (5 000 → 20 000).  
+  A Bash script automates the sweep and stores results in a dedicated directory.
 </p>
 
-
-<h3>9.6 &nbsp;PCA-based normalization vs TF-IDF normalization</h3>
-
+<!-- 9.6 ▸ Normalization comparison -->
+<h3>9.6&nbsp;<code>normalize_total</code> vs TF-IDF normalization</h3>
 <p>
-    In this section, we will compare the effects of PCA-based normalization and TF-IDF normalization on the downstream analysis.
-    PCA-based normalization focuses on preserving the global structure of the data, while TF-IDF normalization emphasizes the importance of highly variable features.
-    We will evaluate the impact of each normalization method on clustering performance and visualization.
+  <code>normalize_total</code> preserves global structure, whereas TF-IDF emphasizes highly variable features.  
+  We assessed both methods for their impact on clustering and visualization.
 </p>
-<p>K4<code>PCA</code></p>
-<img src="results/section9/K4_pca_ntop5000_nn15_md0.1.png" width="500" alt="origin">
-<p>K4<code>TF-IDF</code></p>
-<img src="results/section9/K4_tfidf_ntop5000_nn15_md0.1.png" width="500" alt="origin">
 
-<p>K27<code>PCA</code></p>
-<img src="results/section9/K27_pca_ntop5000_nn15_md0.1.png" width="500" alt="origin">
-<p>K27<code>TF-IDF</code></p>
-<img src="results/section9/K27_tfidf_ntop5000_nn15_md0.1.png" width="500" alt="origin">
+<p><strong>K4 — <code>normalize_total + PCA</code></strong></p>
+<img src="results/section9/K4_pca_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K4 normalise-total PCA UMAP">
 
+<p><strong>K4 — TF-IDF</strong></p>
+<img src="results/section9/K4_tfidf_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K4 TF-IDF UMAP">
 
-<h3>9.7 &nbsp; Hard assignment vs soft assignment</h3>
+<p><strong>K27 — <code>normalize_total + PCA</code></strong></p>
+<img src="results/section9/K27_pca_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K27 normalise-total PCA UMAP">
+
+<p><strong>K27 — TF-IDF</strong></p>
+<img src="results/section9/K27_tfidf_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K27 TF-IDF UMAP">
+
+<!-- 9.7 ▸ Hard vs soft assignment -->
+<h3>9.7&nbsp;Hard assignment vs soft assignment</h3>
 <p>
-    In this section, we will compare the effects of hard assignment and soft assignment on the clustering results.
-    Hard assignment assigns each tile to a single cluster, while soft assignment allows for a degree of membership in multiple clusters.
-    We will evaluate the impact of each assignment method on clustering performance and visualization.
+  Hard assignment places each cell into exactly one cluster; soft assignment allows fractional membership.  
+  We compared both approaches for clustering accuracy and interpretability.
 </p>
-<p>K4<code>Hard</code></p>
-<img src="results/section9/K4_tfidf_ntop5000_nn15_md0.1.png" width="500" alt="origin">
-<p>K4<code>Soft</code></p>
-<img src="results/section9/K4_soft_tfidf_ntop5000_nn15_md01.png" width="500" alt="origin">
-<p>K27<code>Hard</code></p>
-<img src="results/section9/K27_tfidf_ntop5000_nn15_md0.1.png" width="500" alt="origin">
-<p>K27<code>Soft</code></p>
-<img src="results/section9/K27_soft_tfidf_ntop5000_nn15_md01.png" width="500" alt="origin">
+
+<p><strong>K4&nbsp;— hard assignment</strong></p>
+<img src="results/section9/K4_tfidf_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K4 hard assignment">
+
+<p><strong>K4&nbsp;— soft assignment</strong></p>
+<img src="results/section9/K4_soft_tfidf_ntop5000_nn15_md01.png"
+     width="500"
+     alt="K4 soft assignment">
+
+<p><strong>K27&nbsp;— hard assignment</strong></p>
+<img src="results/section9/K27_tfidf_ntop5000_nn15_md0.1.png"
+     width="500"
+     alt="K27 hard assignment">
+
+<p><strong>K27&nbsp;— soft assignment</strong></p>
+<img src="results/section9/K27_soft_tfidf_ntop5000_nn15_md01.png"
+     width="500"
+     alt="K27 soft assignment">
+
+<!-- 9.8 ▸ Iterative SEACells pipeline -->
+<h3>9.8&nbsp;Set up an iterative SEACells pipeline</h3>
+
