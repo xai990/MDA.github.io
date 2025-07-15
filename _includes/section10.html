@@ -1,81 +1,115 @@
-<h2>10. &nbsp;Week July 10 </h2>
-<h3>10.1&nbsp; Overview of week tasks</h3>
-<p>Generate metacells with the SEACell model, processing one sample at a time. (High priority)</p>
-<p>Try peakmatrix/small tile size (low priority)</p>
+<!-- 10 ▸ Week of 10 July -->
+<h2>10.&nbsp;Week&nbsp;of&nbsp;10&nbsp;July</h2>
 
-<h3>10.2&nbsp; Umap plot</h3>
-<p>
-    parameters: <code>n_neighbors = 30</code>, <code>min_dist = 0.1</code>,
-    <code>normalize by total</code>, <code>metacell ratio = 10 </code>,
-    <code> top selected genes = 20000</code>
-</p>
+<!-- 10.1 ▸ Weekly tasks -->
+<h3>10.1&nbsp;Overview of weekly tasks</h3>
+<ul>
+  <li>Generate metacells with the SEACells model, processing one sample at a time <em>(high priority)</em>.</li>
+  <li>Experiment with peak matrices / smaller tile sizes <em>(low priority)</em>.</li>
+</ul>
 
-<p> K4 -- 911 metacells </p>
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-
-<p> K27 -- 968 metacells</p>
-<img src="results/section10/K27_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
-<img src="results/section10/K27verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
-
-<p> Further testing different metacell ratios: 5 and 3.</p>
-<p>
-    parameters: <code>n_neighbors = 30</code>, <code>min_dist = 0.1</code>,
-    <code>normalize by total</code>, <code>metacell ratio = 5 </code>,
-    <code> top selected genes = 20000</code>
-</p>
-<p>
-    K4 -- 1824 metacells
-</p>
-<img src="results/section10/K4_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-<img src="results/section10/K4verbose_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-<p>
-    K27 -- 1935 metacells
-</p>
-<img src="results/section10/K27_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
-<img src="results/section10/K27verbose_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
-
+<!-- 10.2 ▸ UMAP plots -->
+<h3>10.2&nbsp;UMAP plots</h3>
 
 <p>
-    parameters: <code>n_neighbors = 30</code>, <code>min_dist = 0.1</code>,
-    <code>normalize by total</code>, <code>metacell ratio = 3 </code>,
-    <code> top selected genes = 20000</code>
+  <strong>Global parameters</strong>  
+  <code>n_neighbors&nbsp;=&nbsp;30</code>, <code>min_dist&nbsp;=&nbsp;0.1</code>,  
+  <code>normalise&nbsp;=&nbsp;"total"</code>, <code>top&nbsp;genes&nbsp;=&nbsp;20 000</code>
 </p>
-<p>
-    K4 -- 2963 metacells
-</p>
-<img src="results/section10/K4_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-<img src="results/section10/K4verbose_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K4 UMAP plot">
-<p>
-    K27 -- 3138 metacells
-</p>
-<img src="results/section10/K27_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
-<img src="results/section10/K27verbose_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="500" alt="K27 UMAP plot">
 
-<p>Further testing different tile size for K4</p>
+<!-- ─────────── ratio 10 ─────────── -->
+<p><strong>Metacell ratio&nbsp;10</strong></p>
 
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png" width="150" alt="K4 UMAP plot">
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png" width="150" alt="K4 UMAP plot">
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png" width="150" alt="K4 UMAP plot">
+<p>K4 — <code>911</code> metacells × <code>60 630</code> vars</p>
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 10)">
+<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 10, verbose)">
 
-<p>
-    parameters: <code>n_neighbors = 30</code>, <code>min_dist = 0.1</code>,
-    <code>normalize by total</code>, <code>metacell ratio = 10 </code>,
-    <code> top selected genes = 20000</code>, <code>tile size = 10_000</code>
-</p>
-<p>
-    K4 -- 905 metacells x  303114 n_vars
-</p>
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png" width="500" alt="K4 UMAP plot">
-<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png" width="500" alt="K4 UMAP plot">
+<p>K27 — <code>968</code> metacells × <code>60 630</code> vars</p>
+<img src="results/section10/K27_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 10)">
+<img src="results/section10/K27verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 10, verbose)">
 
+<!-- ─────────── ratio 5 ─────────── -->
+<p><strong>Metacell ratio&nbsp;5</strong></p>
+
+<p>K4 — <code>1 824</code> metacells</p>
+<img src="results/section10/K4_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 5)">
+<img src="results/section10/K4verbose_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 5, verbose)">
+
+<p>K27 — <code>1 935</code> metacells</p>
+<img src="results/section10/K27_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 5)">
+<img src="results/section10/K27verbose_ratio5_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 5, verbose)">
+
+<!-- ─────────── ratio 3 ─────────── -->
+<p><strong>Metacell ratio&nbsp;3</strong></p>
+
+<p>K4 — <code>2 963</code> metacells</p>
+<img src="results/section10/K4_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 3)">
+<img src="results/section10/K4verbose_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (ratio 3, verbose)">
+
+<p>K27 — <code>3 138</code> metacells</p>
+<img src="results/section10/K27_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 3)">
+<img src="results/section10/K27verbose_ratio3_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 UMAP (ratio 3, verbose)">
+
+<!-- ─────────── tile‑size tests ─────────── -->
+<h4>Tile‑size comparison (K4)</h4>
+<p>Tile sizes: 10 K → 30 K → 50 K.</p>
+
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png"
+     width="150"
+     alt="K4 UMAP (tile 10 K)">
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png"
+     width="150"
+     alt="K4 UMAP (tile 30 K)">
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="150"
+     alt="K4 UMAP (tile 50 K)">
+
+<!-- 10.2.1 ▸ Tile‑size 10 K -->
 <p>
-    parameters: <code>n_neighbors = 30</code>, <code>min_dist = 0.1</code>,
-    <code>normalize by total</code>, <code>metacell ratio = 10 </code>,
-    <code> top selected genes = 20000</code>, <code>tile size = 30_000</code>
+  <strong>Tile size&nbsp;10 K</strong><br>
+  Parameters: <code>metacell ratio&nbsp;=&nbsp;10</code>  
+  → <code>905</code> metacells × <code>303 114</code> vars
 </p>
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png"
+     width="500"
+     alt="K4 UMAP (tile 10 K)">
+<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize10K.png"
+     width="500"
+     alt="K4 UMAP (tile 10 K, verbose)">
+
+<!-- 10.2.2 ▸ Tile‑size 30 K -->
 <p>
-    K4 -- 905 metacells x  101046 n_vars
+  <strong>Tile size&nbsp;30 K</strong><br>
+  Parameters as above  
+  → <code>905</code> metacells × <code>101 046</code> vars
 </p>
-<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png" width="500" alt="K4 UMAP plot">
-<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png" width="500" alt="K4 UMAP plot">
+<img src="results/section10/K4_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png"
+     width="500"
+     alt="K4 UMAP (tile 30 K)">
+<img src="results/section10/K4verbose_ratio10_umap_normalize_total_ntop20000nneighbor30_mindist0.1_tilesize30K.png"
+     width="500"
+     alt="K4 UMAP (tile 30 K, verbose)">
