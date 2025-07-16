@@ -1,0 +1,26 @@
+<h2>11.&nbsp;Week&nbsp;of&nbsp;16&nbsp;July</h2>
+
+<!-- 10.1 ▸ Weekly tasks -->
+<h3>10.1&nbsp;Overview of weekly tasks</h3>
+<ul>
+  <li>Integrate RNAPII (CM_0) across modalities</li>
+  <ul>
+    <li>For each cell‑type/timepoint, collect the three K4 files (CUTAC, split1, split2) and the three K27 files.</li>
+    <li>Sum their tile matrices to produce a single RNAPII matrix per modality.</li>
+  </ul>  
+<li>Run SEACell</li>
+  <ul>
+    <li>Apply the SEACell model to each integrated RNAPII dataset (by cell‑type/timepoint) to generate metacells.</li>  
+  </ul>
+<li>Assemble multi‑modal metacells</li>
+  <ul>
+    <li>For each RNAPII barcode, extract the corresponding K4 and K27 single‑cell data.</li>
+
+  </ul>
+<li>Repeat for all cell types & time points</li>
+<li>UMAP visualization & separability checks</li>
+    <li>RNAPII only: Are cell types/timepoints separable?</li>
+    <li>K4 only: Assess clustering.</li>
+    <li>K27 only: Assess clustering.</li>
+    <li>K4+K27: Integrate by concatenating region matrices or using Seurat’s Weighted Nearest Neighbors; evaluate separability.</li>
+</ul>
