@@ -24,3 +24,15 @@
     <li>K27 only: Assess clustering.</li>
     <li>K4+K27: Integrate by concatenating region matrices or using Seurat’s Weighted Nearest Neighbors; evaluate separability.</li>
 </ul>
+
+<h3>10.2&nbsp;Integration of RNAPII modalities</h3>
+<p> As we define tile size as 50K, the dimension of the tile matrix contains 39057 cells and 60630 vars</p>
+<p> The following image is the data after removing the outliers</p>
+<img src="results/section11/multitag_RNAPII_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (tile 10 K)">
+<p> The following image is the data after aggregating the tile matrix</p>
+<p> The data dimension is reduced to 3947 cells and 60630 vars (as the metacell ratio is 10)</p>
+<img src="results/section11/multitag_RNAPII_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 UMAP (tile 10 K)">
