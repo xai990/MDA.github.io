@@ -36,3 +36,52 @@
 <img src="results/section11/multitag_RNAPII_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
      width="500"
      alt="K4 UMAP (tile 10 K)">
+
+<h3>10.3&nbsp; Filter based on high-quality RNAPII cells and K4/K27 mapping</h3>
+
+Independent Preprocessing (per sample): First, each dataset (RNAPII, K4, K27) undergoes its own preprocessing pipeline. This includes creating an Arrow file, filtering for a minimum of 300 fragments, removing doublets with the filterDoublets function, and removing outliers using DBSCAN.
+Two-Step Cross-Referencing: After preprocessing, I used a two-step filtering process to match the RNAPII cells with the K4 and K27 data:
+Mask 1 (iCell8 Well Matching): An initial filter was applied by matching the first two parts of the barcode. This step identifies cells originating from the same iCell8 well.
+Mask 2 (Detailed Barcode Mapping -- RNAPII-K4 or RNAPII-K27): A second filter was applied using a custom mapping table (8 columns per table) I created for each cell type. This table maps the 3rd and 4th barcode parts from the various RNAPII runs (CUTAC, split1, split2) to the reference barcodes in the K4 or K27 datasets (last two columns).
+Final Model Execution: The cells that passed both filtering steps were designated as the "high-quality" RNAPII subset. I then re-ran the SEACells model on this high-quality data.
+one mapping table (CM_0) as an example:
+CUTbarcode3,CUTbarcode4,Split1barcode3,Split1barcode4,Split2barcode3,Split2barcode4,K4nK27barcode3,K4nK27barcode4
+GAGATTCC,TATAGCCT,GAGATTCC,AATAACGT,AAGGAATC,TATAGCCT,AAGGAATC,AATAACGT
+GAGATTCC,ATAGAGGC,GAGATTCC,CCATTGTG,AAGGAATC,ATAGAGGC,AAGGAATC,CCATTGTG
+GAGATTCC,CCTATCCT,GAGATTCC,TTACGCCG,AAGGAATC,CCTATCCT,AAGGAATC,TTACGCCG
+GAGATTCC,TTCTCGTA,GAGATTCC,AATTCTAA,AAGGAATC,TTCTCGTA,AAGGAATC,AATTCTAA
+GAGATTCC,AGGCGAAG,GAGATTCC,GCGGTTAA,AAGGAATC,AGGCGAAG,AAGGAATC,GCGGTTAA
+GAGATTCC,TAATCTTA,GAGATTCC,TGCGAAGT,AAGGAATC,TAATCTTA,AAGGAATC,TGCGAAGT
+TCCGCGAA,TATAGCCT,TCCGCGAA,AATAACGT,TCTGGTTA,TATAGCCT,TCTGGTTA,AATAACGT
+TCCGCGAA,ATAGAGGC,TCCGCGAA,CCATTGTG,TCTGGTTA,ATAGAGGC,TCTGGTTA,CCATTGTG
+TCCGCGAA,CCTATCCT,TCCGCGAA,TTACGCCG,TCTGGTTA,CCTATCCT,TCTGGTTA,TTACGCCG
+TCCGCGAA,TTCTCGTA,TCCGCGAA,AATTCTAA,TCTGGTTA,TTCTCGTA,TCTGGTTA,AATTCTAA
+TCCGCGAA,AGGCGAAG,TCCGCGAA,GCGGTTAA,TCTGGTTA,AGGCGAAG,TCTGGTTA,GCGGTTAA
+TCCGCGAA,TAATCTTA,TCCGCGAA,TGCGAAGT,TCTGGTTA,TAATCTTA,TCTGGTTA,TGCGAAGT
+
+As we define the metacell ratio to be 10. After the double mast filtering, the metacell number reduce from 3947 to 1574 cells.
+<img src="results/section11/doublemask_multitag_RNAPII_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+The metacell aNNDATA:  1574 cells × 60630 vars
+<img src="results/section11/doublemask_multitag_RNAPII_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+The raw  aNNDATA: 15766 × 60630
+<h3>10.4&nbsp; Integrate the K4 and K27 cells</h3>
+
+Indentify the cell using the barcode from RNAPII and extract the corresponding K4 and K27 single‑cell data.
+Assign the metacell label to the K4 and K27 cells.
+
+As we get the weight matrix from the RNAPII. We use the mapping table to filter the weight that contribute from K4 and K27 separately.
+The weight matrix is used to calculate the K4 and K27 metacell.
+k4 metacell: 1574 cells × 60630 vars
+<img src="results/section11/doublemask_multitag_K4_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+k4 rawcell: 5839 × 60630
+<img src="results/section11/doublemask_multitag_K4_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+k27 metacell: 1574 cells × 60630 vars
+<img src="results/section11/doublemask_multitag_K27_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+K27 rawcell: 5839 × 60630
+<img src="results/section11/doublemask_multitag_K27_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
