@@ -85,3 +85,31 @@ k27 metacell: 1574 cells × 60630 vars
 K27 rawcell: 5839 × 60630
 <img src="results/section11/doublemask_multitag_K27_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
      width="500">
+
+<h3>10.5&nbsp; concatenating K4 K27 and RNAPII</h3>
+The data processing pipeline consists of the following steps:
+Initial Loading and Normalization:
+The tile matrix is read for each data type (H3K4me3, H3K27me3, and RNAPII) individually.
+Each matrix then undergoes an initial normalization (log1p transformation of the total-normalized counts).
+Matrix Concatenation:
+The normalized matrices are concatenated horizontally (by column).
+This results in two main matrices for analysis:
+K4 + K27: A combined matrix with dimensions 1574 x 121,260.
+K4 + K27 + RNAPII: A tri-modal matrix with dimensions 1574 x 181,890.
+Final Processing:
+A second normalization step is applied to the final concatenated matrix.
+PCA is then run on the normalized data to obtain the latent space representation.
+
+<img src="results/section11/K4K27_normalize_cancateaxis1_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+<img src="results/section11/K4K27RNAPII_normalize_cancateaxis1_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
+
+<h3>10.6&nbsp; Apply WNN to fuse the UMAP plot</h3>
+The pipeline was as follows:
+Normalized the K4 and K27 data separately using a logpcm.
+Obtained the latent space for each by running PCA (K4_pca & K27_pca).
+Ran the WNN algorithm on the resulting PCA representations.
+Python version of WNN:
+<img src="results/section11/WNN_K4K27_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500">
