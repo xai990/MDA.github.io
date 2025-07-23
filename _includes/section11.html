@@ -1,50 +1,62 @@
 <h2>11.&nbsp;Week&nbsp;of&nbsp;16&nbsp;July</h2>
 
-<!-- 10.1 ▸ Weekly tasks -->
-<h3>10.1&nbsp;Overview of weekly tasks</h3>
+<h3>11.1&nbsp;Overview of weekly tasks</h3>
 <ul>
-  <li>Integrate RNAPII (CM_0) across modalities</li>
-  <ul>
-    <li>For each cell‑type/timepoint, collect the three K4 files (CUTAC, split1, split2) and the three K27 files.</li>
-    <li>Sum their tile matrices to produce a single RNAPII matrix per modality.</li>
-  </ul>  
-<li>Run SEACell</li>
-  <ul>
-    <li>Apply the SEACell model to each integrated RNAPII dataset (by cell‑type/timepoint) to generate metacells.</li>  
-  </ul>
-<li>Assemble multi‑modal metacells</li>
-  <ul>
-    <li>For each RNAPII barcode, extract the corresponding K4 and K27 single‑cell data.</li>
-
-  </ul>
-<li>Repeat for all cell types & time points</li>
-<li>UMAP visualization & separability checks</li>
-    <li>RNAPII only: Are cell types/timepoints separable?</li>
-    <li>K4 only: Assess clustering.</li>
-    <li>K27 only: Assess clustering.</li>
-    <li>K4+K27: Integrate by concatenating region matrices or using Seurat’s Weighted Nearest Neighbors; evaluate separability.</li>
+  <li>Integrate RNAPII (CM_0) across modalities
+    <ul>
+      <li>For each cell type / time-point, collect the three K4 files (CUTAC, split1, split2) and the three K27 files.</li>
+      <li>Sum their tile matrices to produce one RNAPII matrix per modality.</li>
+    </ul>
+  </li>
+  <li>Run SEACells
+    <ul>
+      <li>Apply SEACells to each integrated RNAPII dataset (by cell type / time-point) to generate metacells.</li>
+    </ul>
+  </li>
+  <li>Assemble multi-modal metacells
+    <ul>
+      <li>For each RNAPII barcode, extract the corresponding K4 and K27 single-cell data.</li>
+    </ul>
+  </li>
+  <li>Repeat for all cell types & time-points.</li>
+  <li>UMAP visualisation & separability checks
+    <ul>
+      <li>RNAPII only: Are cell types / time-points separable?</li>
+      <li>K4 only: Assess clustering.</li>
+      <li>K27 only: Assess clustering.</li>
+      <li>K4&nbsp;+&nbsp;K27: Integrate by concatenating region matrices or via Seurat WNN; evaluate separability.</li>
+    </ul>
+  </li>
 </ul>
 
-<h3>10.2&nbsp;Integration of RNAPII modalities</h3>
-<p> As we define tile size as 50K, the dimension of the tile matrix contains 39057 cells and 60630 vars</p>
-<p> The following image is the data after removing the outliers</p>
+<h3>11.2&nbsp;Integration of RNAPII modalities</h3>
+<p>Tile size was set to 50 K, yielding a tile matrix of <strong>39 057 cells × 60 630 vars</strong>.</p>
+<p><em>After outlier removal:</em></p>
 <img src="results/section11/multitag_RNAPII_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
      width="500"
-     alt="K4 UMAP (tile 10 K)">
-<p> The following image is the data after aggregating the tile matrix</p>
-<p> The data dimension is reduced to 3947 cells and 60630 vars (as the metacell ratio is 10)</p>
+     alt="RNAPII UMAP without aggregation">
+
+<p><em>After SEACells aggregation (metacell ratio = 10):</em></p>
+<p>Dimensionality reduced to <strong>3 947 cells × 60 630 vars</strong>.</p>
 <img src="results/section11/multitag_RNAPII_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
      width="500"
-     alt="K4 UMAP (tile 10 K)">
+     alt="RNAPII UMAP after aggregation">
 
-<h3>10.3&nbsp; Filter based on high-quality RNAPII cells and K4/K27 mapping</h3>
+<h3>11.3&nbsp;Filtering with high-quality RNAPII cells and K4/K27 mapping</h3>
+<p><strong>Independent preprocessing (per sample)</strong></p>
+<ol>
+  <li>Create Arrow files.</li>
+  <li>Filter cells (minFrags ≥ 300), remove doublets (<code>filterDoublets</code>), and drop outliers (DBSCAN).</li>
+</ol>
 
-Independent Preprocessing (per sample): First, each dataset (RNAPII, K4, K27) undergoes its own preprocessing pipeline. This includes creating an Arrow file, filtering for a minimum of 300 fragments, removing doublets with the filterDoublets function, and removing outliers using DBSCAN.
-Two-Step Cross-Referencing: After preprocessing, I used a two-step filtering process to match the RNAPII cells with the K4 and K27 data:
-Mask 1 (iCell8 Well Matching): An initial filter was applied by matching the first two parts of the barcode. This step identifies cells originating from the same iCell8 well.
-Mask 2 (Detailed Barcode Mapping -- RNAPII-K4 or RNAPII-K27): A second filter was applied using a custom mapping table (8 columns per table) I created for each cell type. This table maps the 3rd and 4th barcode parts from the various RNAPII runs (CUTAC, split1, split2) to the reference barcodes in the K4 or K27 datasets (last two columns).
-Final Model Execution: The cells that passed both filtering steps were designated as the "high-quality" RNAPII subset. I then re-ran the SEACells model on this high-quality data.
-one mapping table (CM_0) as an example:
+<p><strong>Two-step cross-referencing</strong></p>
+<ol>
+  <li><em>Mask&nbsp;1 (iCell8 well matching):</em> match the first two barcode parts to identify cells from the same well.</li>
+  <li><em>Mask&nbsp;2 (detailed barcode mapping):</em> use an 8-column mapping table (per cell type) to align the 3rd/4th barcode parts from RNAPII runs (CUTAC, split1, split2) to the K4/K27 references (last two columns).</li>
+</ol>
+
+<p>Example (CM_0) mapping table:</p>
+<pre>
 CUTbarcode3,CUTbarcode4,Split1barcode3,Split1barcode4,Split2barcode3,Split2barcode4,K4nK27barcode3,K4nK27barcode4
 GAGATTCC,TATAGCCT,GAGATTCC,AATAACGT,AAGGAATC,TATAGCCT,AAGGAATC,AATAACGT
 GAGATTCC,ATAGAGGC,GAGATTCC,CCATTGTG,AAGGAATC,ATAGAGGC,AAGGAATC,CCATTGTG
@@ -58,58 +70,82 @@ TCCGCGAA,CCTATCCT,TCCGCGAA,TTACGCCG,TCTGGTTA,CCTATCCT,TCTGGTTA,TTACGCCG
 TCCGCGAA,TTCTCGTA,TCCGCGAA,AATTCTAA,TCTGGTTA,TTCTCGTA,TCTGGTTA,AATTCTAA
 TCCGCGAA,AGGCGAAG,TCCGCGAA,GCGGTTAA,TCTGGTTA,AGGCGAAG,TCTGGTTA,GCGGTTAA
 TCCGCGAA,TAATCTTA,TCCGCGAA,TGCGAAGT,TCTGGTTA,TAATCTTA,TCTGGTTA,TGCGAAGT
+</pre>
 
-As we define the metacell ratio to be 10. After the double mast filtering, the metacell number reduce from 3947 to 1574 cells.
+<p>
+  With metacell ratio = 10, applying both masks reduced the RNAPII metacells from <strong>3 947 to 1 574 cells</strong>.
+</p>
+
 <img src="results/section11/doublemask_multitag_RNAPII_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
-The metacell aNNDATA:  1574 cells × 60630 vars
+     width="500"
+     alt="RNAPII metacells after double masking">
+
+<p><strong>Metacell AnnData:</strong> 1 574 cells × 60 630 vars</p>
 <img src="results/section11/doublemask_multitag_RNAPII_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
-The raw  aNNDATA: 15766 × 60630
-<h3>10.4&nbsp; Integrate the K4 and K27 cells</h3>
+     width="500"
+     alt="RNAPII raw cells after double masking">
 
-Indentify the cell using the barcode from RNAPII and extract the corresponding K4 and K27 single‑cell data.
-Assign the metacell label to the K4 and K27 cells.
+<p><strong>Raw AnnData:</strong> 15 766 cells × 60 630 vars</p>
 
-As we get the weight matrix from the RNAPII. We use the mapping table to filter the weight that contribute from K4 and K27 separately.
-The weight matrix is used to calculate the K4 and K27 metacell.
-k4 metacell: 1574 cells × 60630 vars
+<h3>11.4&nbsp;Integrate K4 and K27 cells</h3>
+<ol>
+  <li>Identify cells via RNAPII barcodes and extract the corresponding K4/K27 single-cell profiles.</li>
+  <li>Assign RNAPII metacell labels to K4/K27 cells.</li>
+</ol>
+
+<p>
+  Using the RNAPII weight matrix, filter contributions from K4 and K27 separately via the mapping table, then compute metacells.
+</p>
+
+<p><strong>K4 metacells:</strong> 1 574 cells × 60 630 vars</p>
 <img src="results/section11/doublemask_multitag_K4_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
-k4 rawcell: 9927 × 60630
-<img src="results/section11/doublemask_multitag_K4_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
-k27 metacell: 1574 cells × 60630 vars
-<img src="results/section11/doublemask_multitag_K27_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
-K27 rawcell: 5839 × 60630
-<img src="results/section11/doublemask_multitag_K27_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
+     width="500"
+     alt="K4 metacells UMAP">
 
-<h3>10.5&nbsp; concatenating K4 K27 and RNAPII</h3>
-The data processing pipeline consists of the following steps:
-Initial Loading and Normalization:
-The tile matrix is read for each data type (H3K4me3, H3K27me3, and RNAPII) individually.
-Each matrix then undergoes an initial normalization (log1p transformation of the total-normalized counts).
-Matrix Concatenation:
-The normalized matrices are concatenated horizontally (by column).
-This results in two main matrices for analysis:
-K4 + K27: A combined matrix with dimensions 1574 x 121,260.
-K4 + K27 + RNAPII: A tri-modal matrix with dimensions 1574 x 181,890.
-Final Processing:
-A second normalization step is applied to the final concatenated matrix.
-PCA is then run on the normalized data to obtain the latent space representation.
+<p><strong>K4 raw cells:</strong> 9 927 × 60 630</p>
+<img src="results/section11/doublemask_multitag_K4_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K4 raw UMAP">
+
+<p><strong>K27 metacells:</strong> 1 574 cells × 60 630 vars</p>
+<img src="results/section11/doublemask_multitag_K27_Aggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 metacells UMAP">
+
+<p><strong>K27 raw cells:</strong> 5 839 × 60 630</p>
+<img src="results/section11/doublemask_multitag_K27_Noaggregation_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
+     width="500"
+     alt="K27 raw UMAP">
+
+<h3>11.5&nbsp;Concatenating K4, K27, and RNAPII</h3>
+<p><strong>Pipeline</strong></p>
+<ol>
+  <li><em>Initial loading & normalisation:</em> read each modality (H3K4me3, H3K27me3, RNAPII); apply <code>log1p</code> on total-normalised counts.</li>
+  <li><em>Matrix concatenation:</em> horizontally concatenate normalised matrices.
+    <ul>
+      <li><strong>K4 + K27:</strong> 1 574 × 121 260</li>
+      <li><strong>K4 + K27 + RNAPII:</strong> 1 574 × 181 890</li>
+    </ul>
+  </li>
+  <li><em>Final processing:</em> re-normalise, then run PCA to obtain the latent space.</li>
+</ol>
 
 <img src="results/section11/K4K27_normalize_cancateaxis1_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
+     width="500"
+     alt="K4+K27 concatenated UMAP">
 <img src="results/section11/K4K27RNAPII_normalize_cancateaxis1_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
+     width="500"
+     alt="K4+K27+RNAPII concatenated UMAP">
 
-<h3>10.6&nbsp; Apply WNN to fuse the UMAP plot</h3>
-The pipeline was as follows:
-Normalized the K4 and K27 data separately using a logpcm.
-Obtained the latent space for each by running PCA (K4_pca & K27_pca).
-Ran the WNN algorithm on the resulting PCA representations.
-Python version of WNN:
+<h3>11.6&nbsp;Apply WNN to fuse the UMAP plot</h3>
+<p><strong>Pipeline</strong></p>
+<ol>
+  <li>Normalise K4 and K27 separately with log-normalised counts.</li>
+  <li>Compute PCA for each (<code>K4_pca</code>, <code>K27_pca</code>).</li>
+  <li>Run WNN on the PCA embeddings to obtain a fused neighbour graph.</li>
+</ol>
+
+<p><strong>Python implementation of WNN:</strong></p>
 <img src="results/section11/WNN_K4K27_umap_normalize_total_ntop20000nneighbor30_mindist0.1.png"
-     width="500">
+     width="500"
+     alt="WNN fused UMAP (K4+K27)">
