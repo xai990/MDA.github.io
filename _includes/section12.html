@@ -1,57 +1,66 @@
 <h2>12.&nbsp;Week&nbsp;of&nbsp;23&nbsp;July</h2>
-<h3>12.1&nbsp;Overview of weekly tasks</h3>
-Apply Seurat’s Weighted Nearest Neighbors (WNN) in R and compare the results to the Python version.
-Use WNN to integrate all three features (K4, K27, and RNAPII).
-Rerun with a smaller metacell ratio (5) and note any metacells comprised solely of K4 or K27.
-From the WNN integration results, zoom in on one cell type and timepoint to identify potential subclusters.
-Check on the little tail or separated clusters of single-cell K4/K27 UMAP.
-<h3>12.2&nbsp;Seurat WNN integration</h3>
-Integration of K4 and K27.
-<img src="results/section12/wnnK4K27.png"
-     width="500"
-     alt="RNAPII UMAP without aggregation">
 
-Integration of K4, K27 and RNAPII.
-<img src="results/section12/wnnK4K27RNAPII.png"
-     width="500"
-     alt="RNAPII UMAP without aggregation">
-<h3>12.3&nbsp;Running a smaller metacell ratio (5)</h3>
-RNAPII metacell 3144 x 60630
-<img src="results/section12/RNAPIImetaratio5.png"
-     width="500"
-     alt="RNAPII UMAP without aggregation">
+<h3>12.1&nbsp;Overview of Weekly Tasks</h3>
+<ul>
+  <li>Apply Seurat’s Weighted Nearest Neighbors (WNN) in R and compare the results with the Python implementation.</li>
+  <li>Integrate all three modalities (K4, K27, and RNAPII) using WNN.</li>
+  <li>Rerun the analysis with a smaller metacell ratio (5).</li>
+  <li>Zoom in on a single cell type and time point in the WNN results to identify potential subclusters.</li>
+  <li>Investigate minor tails or separated clusters in the single‑cell K4/K27 UMAP plots.</li>
+</ul>
 
+<h3>12.2&nbsp;Seurat WNN Integration</h3>
+<p><strong>Integration of K4 and K27</strong></p>
+<img src="results/section12/wnnK4K27.png" width="500" alt="WNN UMAP of K4 and K27" />
 
-<h3>12.4&nbsp;Zooming in on one cell type and timepoint with wnn integration data (K4, K27, RNAPII)</h3>
-CM_0
-<img src="results/section12/wnn.umap_CM_0.png"
-     width="500"
-     alt="CM_0 UMAP with WNN integration">
-CM_1
-<img src="results/section12/wnn.umap_CM_1.png"
-     width="500"
-     alt="CM_1 UMAP with WNN integration">
-CM_2
-<img src="results/section12/wnn.umap_CM_2.png"
-     width="500"
-     alt="CM_2 UMAP with WNN integration">
-CM_3
-<img src="results/section12/wnn.umap_CM_3.png"
-     width="500"
-     alt="CM_3 UMAP with WNN integration">
-EM_0
-<img src="results/section12/wnn.umap_EM_0.png"
-     width="500"
-     alt="EM_0 UMAP with WNN integration">        
-EM_1
-<img src="results/section12/wnn.umap_EM_1.png"
-     width="500"
-     alt="EM_1 UMAP with WNN integration">
-EM_2
-<img src="results/section12/wnn.umap_EM_2.png"
-     width="500"
-     alt="EM_2 UMAP with WNN integration">
-EM_3
-<img src="results/section12/wnn.umap_EM_3.png"         
-     width="500"
-     alt="EM_3 UMAP with WNN integration">        
+<p><strong>Integration of K4, K27, and RNAPII</strong></p>
+<img src="results/section12/wnnK4K27RNAPII.png" width="500" alt="WNN UMAP of K4, K27, and RNAPII" />
+
+<h3>12.3&nbsp;Running a Smaller Metacell Ratio (5)</h3>
+<p>RNAPII metacell: 3,144 × 60,630</p>
+<img src="results/section12/RNAPIImetaratio5.png" width="500" alt="RNAPII UMAP (metacell ratio 5)" />
+
+<h3>12.4&nbsp;Zooming in on One Cell Type and Time Point (WNN: K4, K27, RNAPII)</h3>
+<p><strong>CM&nbsp;0</strong></p>
+<img src="results/section12/wnn.umap_CM_0.png" width="500" alt="CM 0 UMAP with WNN integration" />
+
+<p><strong>CM&nbsp;1</strong></p>
+<img src="results/section12/wnn.umap_CM_1.png" width="500" alt="CM 1 UMAP with WNN integration" />
+
+<p><strong>CM&nbsp;2</strong></p>
+<img src="results/section12/wnn.umap_CM_2.png" width="500" alt="CM 2 UMAP with WNN integration" />
+
+<p><strong>CM&nbsp;3</strong></p>
+<img src="results/section12/wnn.umap_CM_3.png" width="500" alt="CM 3 UMAP with WNN integration" />
+
+<p><strong>EM&nbsp;0</strong></p>
+<img src="results/section12/wnn.umap_EM_0.png" width="500" alt="EM 0 UMAP with WNN integration" />
+
+<p><strong>EM&nbsp;1</strong></p>
+<img src="results/section12/wnn.umap_EM_1.png" width="500" alt="EM 1 UMAP with WNN integration" />
+
+<p><strong>EM&nbsp;2</strong></p>
+<img src="results/section12/wnn.umap_EM_2.png" width="500" alt="EM 2 UMAP with WNN integration" />
+
+<p><strong>EM&nbsp;3</strong></p>
+<img src="results/section12/wnn.umap_EM_3.png" width="500" alt="EM 3 UMAP with WNN integration" />
+
+<h3>12.5&nbsp;Inspecting Minor Tails or Separated Clusters in Single‑Cell K4/K27 UMAP</h3>
+
+<p><strong>K4 UMAP</strong></p>
+<img src="results/section12/K4subsetdetail.png" width="500" alt="K4 UMAP highlighting separated clusters" />
+
+<p><strong>Body and Tail of K4</strong></p>
+<img src="results/section12/K4bodyntail.png" width="500" alt="K4 UMAP showing body and tail regions" />
+
+<p><strong>Chromatin K4</strong></p>
+<img src="results/section12/K4Dchrplot.png" width="500" alt="K4 chromatin distribution plot" />
+
+<p><strong>K27 UMAP</strong></p>
+<img src="results/section12/K27subsetdetail.png" width="500" alt="K27 UMAP highlighting separated clusters" />
+
+<p><strong>Body and Tail of K27</strong></p>
+<img src="results/section12/K27bodyntail.png" width="500" alt="K27 UMAP showing body and tail regions" />
+
+<p><strong>Chromatin K27</strong></p>
+<img src="results/section12/K27Dchrplot.png" width="500" alt="K27 chromatin distribution plot" />
