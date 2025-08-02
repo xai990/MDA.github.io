@@ -1,0 +1,67 @@
+<h2>13.&nbsp;Week&nbsp;of&nbsp;30&nbsp;July</h2>
+
+<!-- 13.1 ▸ Weekly tasks -->
+<h3>13.1&nbsp;Overview of weekly tasks</h3>
+<ul>
+  <li>Run the SEACells model with <strong>metacell ratio = 5</strong> to test whether trajectories become smoother within each cell type and time-point.</li>
+  <li>Explore UMAP settings:
+    <ul>
+      <li>Single-sample, single-time-point views (metacell ratio 5).</li>
+      <li>Grouped cell types across multiple time-points.</li>
+    </ul>
+  </li>
+  <li>Read recent trajectory-analysis papers for new ideas.</li>
+</ul>
+
+<!-- 13.2 ▸ SEACells, ratio 5 -->
+<h3>13.2&nbsp;Running SEACells with metacell ratio 5</h3>
+
+<p><strong>RNAPII</strong> — 3130 (3144) metacells × 60630 vars</p>
+<img src="results/section13/RNAPIImetaratio5.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 5)">
+
+<p><strong>K4</strong> — 3130 metacells × 60630 vars</p>
+<img src="results/section13/K4metaratio5.png"
+     width="500"
+     alt="K4 UMAP (metacell ratio 5)">
+
+<p><strong>K27</strong> — 3130 metacells × 60630 vars</p>
+<img src="results/section13/K27metaratio5.png"
+     width="500"
+     alt="K27 UMAP (metacell ratio 5)">
+
+<p><strong>WNN fusion (K4 + K27 + RNAPII)</strong></p>
+<img src="results/section13/wnnK4K27RNAPIImetaratio5.png"
+     width="500"
+     alt="WNN UMAP of K4, K27, and RNAPII (metacell ratio 5)">
+
+<h4>Zoom-in: individual cell-type/time-point views</h4>
+
+<!-- CM series -->
+<img src="results/section13/wnn.umap_CM_0.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 0">
+<img src="results/section13/wnn.umap_CM_1.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 1">
+<img src="results/section13/wnn.umap_CM_2.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 2">
+<img src="results/section13/wnn.umap_CM_3.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 3">
+
+<!-- EM series -->
+<img src="results/section13/wnn.umap_EM_0.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 0">
+<img src="results/section13/wnn.umap_EM_1.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 1">
+<img src="results/section13/wnn.umap_EM_2.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 2">
+<img src="results/section13/wnn.umap_EM_3.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 3">
