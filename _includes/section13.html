@@ -3,83 +3,143 @@
 <!-- 13.1 ▸ Weekly tasks -->
 <h3>13.1&nbsp;Overview of weekly tasks</h3>
 <ul>
-  <li>Run SEACells with a <strong>metacell&nbsp;ratio&nbsp;= 5</strong> to determine whether trajectories become smoother within each cell type and time-point.</li>
-  <li>Explore UMAP layouts:
+  <li>Run the SEACells model with <strong>metacell ratio = 5</strong> to test whether trajectories become smoother within each cell type and time-point.</li>
+  <li>Explore UMAP settings:
     <ul>
-      <li>Single-sample / single-time-point views (ratio 5).</li>
-      <li>Grouped cell-type views spanning multiple time-points.</li>
+      <li>Single-sample, single-time-point views (metacell ratio 5).</li>
+      <li>Grouped cell types across multiple time-points.</li>
     </ul>
   </li>
-  <li>Read recent trajectory-analysis papers for fresh ideas.</li>
+  <li>Read recent trajectory-analysis papers for new ideas.</li>
 </ul>
 
 <!-- 13.2 ▸ SEACells, ratio 5 -->
-<h3>13.2&nbsp;SEACells results (metacell ratio 5)</h3>
+<h3>13.2&nbsp;Running SEACells with metacell ratio 5</h3>
 
-<p><strong>RNAPII</strong> — 3 130 / 3 144 metacells × 60 630 vars</p>
+<p><strong>RNAPII</strong> — 3130 (3144) metacells × 60630 vars</p>
 <img src="results/section13/RNAPIImetaratio5.png"
      width="500"
-     alt="RNAPII UMAP (ratio 5)">
+     alt="RNAPII UMAP (metacell ratio 5)">
 
-<p><strong>K4</strong> — 3 130 metacells × 60 630 vars</p>
+<p><strong>K4</strong> — 3130 metacells × 60630 vars</p>
 <img src="results/section13/K4metaratio5.png"
      width="500"
-     alt="K4 UMAP (ratio 5)">
+     alt="K4 UMAP (metacell ratio 5)">
 
-<p><strong>K27</strong> — 3 130 metacells × 60 630 vars</p>
+<p><strong>K27</strong> — 3130 metacells × 60630 vars</p>
 <img src="results/section13/K27metaratio5.png"
      width="500"
-     alt="K27 UMAP (ratio 5)">
+     alt="K27 UMAP (metacell ratio 5)">
 
 <p><strong>WNN fusion (K4 + K27 + RNAPII)</strong></p>
 <img src="results/section13/wnnK4K27RNAPIImetaratio5.png"
      width="500"
-     alt="WNN UMAP (K4 + K27 + RNAPII, ratio 5)">
+     alt="WNN UMAP of K4, K27, and RNAPII (metacell ratio 5)">
 
-<!-- 13.2.1 ▸ Zoom-ins -->
-<h4>Zoom-in: individual cell-type / time-point</h4>
+<h4>Zoom-in: individual cell-type/time-point views</h4>
 
 <!-- CM series -->
-<img src="results/section13/wnn.umap_CM_0.png" width="500" alt="WNN UMAP — CM, T0">
-<img src="results/section13/wnn.umap_CM_1.png" width="500" alt="WNN UMAP — CM, T1">
-<img src="results/section13/wnn.umap_CM_2.png" width="500" alt="WNN UMAP — CM, T2">
-<img src="results/section13/wnn.umap_CM_3.png" width="500" alt="WNN UMAP — CM, T3">
+ 
+<img src="results/section13/wnn.umap_CM_0.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 0">
+<img src="results/section13/wnn.umap_CM_1.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 1">
+<img src="results/section13/wnn.umap_CM_2.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 2">
+<img src="results/section13/wnn.umap_CM_3.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 3">
 
 <!-- EM series -->
-<img src="results/section13/wnn.umap_EM_0.png" width="500" alt="WNN UMAP — EM, T0">
-<img src="results/section13/wnn.umap_EM_1.png" width="500" alt="WNN UMAP — EM, T1">
-<img src="results/section13/wnn.umap_EM_2.png" width="500" alt="WNN UMAP — EM, T2">
-<img src="results/section13/wnn.umap_EM_3.png" width="500" alt="WNN UMAP — EM, T3">
+<img src="results/section13/wnn.umap_EM_0.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 0">
+<img src="results/section13/wnn.umap_EM_1.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 1">
+<img src="results/section13/wnn.umap_EM_2.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 2">
+<img src="results/section13/wnn.umap_EM_3.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 3">
 
-<!-- 13.3 ▸ UMAP configuration tests -->
-<h3>13.3&nbsp;Additional UMAP configurations</h3>
-
-<!-- CM-only view -->
-<h4>CM-only</h4>
-<img src="results/section13/metaratio5CM.png" width="500" alt="UMAP — CM (all time-points, ratio 5)">
-
-<img src="results/section13/wnn.umapCM_CM_0.png" width="500" alt="UMAP — CM T0">
-<img src="results/section13/wnn.umapCM_CM_1.png" width="500" alt="UMAP — CM T1">
-<img src="results/section13/wnn.umapCM_CM_2.png" width="500" alt="UMAP — CM T2">
-<img src="results/section13/wnn.umapCM_CM_3.png" width="500" alt="UMAP — CM T3">
-
-<!-- EM-only view -->
-<h4>EM-only</h4>
-<img src="results/section13/metaratio5EM.png" width="500" alt="UMAP — EM (all time-points, ratio 5)">
-
-<img src="results/section13/wnn.umapEM_EM_0.png" width="500" alt="UMAP — EM T0">
-<img src="results/section13/wnn.umapEM_EM_1.png" width="500" alt="UMAP — EM T1">
-<img src="results/section13/wnn.umapEM_EM_2.png" width="500" alt="UMAP — EM T2">
-<img src="results/section13/wnn.umapEM_EM_3.png" width="500" alt="UMAP — EM T3">
-
-<!-- Individual CM / EM plots (high-resolution) -->
-<h4>High-resolution single views</h4>
-<img src="results/section13/wnn.CM_0.png" width="500" alt="High-res UMAP — CM T0">
-<img src="results/section13/wnn.CM_1.png" width="500" alt="High-res UMAP — CM T1">
-<img src="results/section13/wnn.CM_2.png" width="500" alt="High-res UMAP — CM T2">
-<img src="results/section13/wnn.CM_3.png" width="500" alt="High-res UMAP — CM T3">
-
-<img src="results/section13/wnn.EM_0.png" width="500" alt="High-res UMAP — EM T0">
-<img src="results/section13/wnn.EM_1.png" width="500" alt="High-res UMAP — EM T1">
-<img src="results/section13/wnn.EM_2.png" width="500" alt="High-res UMAP — EM T2">
-<img src="results/section13/wnn.EM_3.png" width="500" alt="High-res UMAP — EM T3">
+<h3>13.3&nbsp;Exploring UMAP settings</h3>
+<h4>Only considering cell type as CM:</h4>
+CM
+<img src="results/section13/metaratio5CM.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 0, metacell ratio 5">
+CM_0
+<img src="results/section13/wnn.umapCM_CM_0.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 0">
+CM_1
+<img src="results/section13/wnn.umapCM_CM_1.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 1">
+CM_2
+<img src="results/section13/wnn.umapCM_CM_2.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 2">
+CM_3
+<img src="results/section13/wnn.umapCM_CM_3.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 3"> 
+<h4>Only considering cell type as EM:</h4>
+EM
+<img src="results/section13/metaratio5EM.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 0, metacell ratio 5">
+EM_0
+<img src="results/section13/wnn.umapEM_EM_0.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 0">
+EM_1
+<img src="results/section13/wnn.umapEM_EM_1.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 1">
+EM_2
+<img src="results/section13/wnn.umapEM_EM_2.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 2">
+EM_3
+<img src="results/section13/wnn.umapEM_EM_3.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 3">
+<h4>Individual cell type and time point views:</h4>
+umap_CM_0
+<img src="results/section13/wnn.CM_0.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 0">
+CM_1
+<img src="results/section13/wnn.CM_1.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 1">
+CM_2
+<img src="results/section13/wnn.CM_2.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 2">
+CM_3
+<img src="results/section13/wnn.CM_3.png"
+     width="500"
+     alt="WNN UMAP — CM, time-point 3">
+umap_EM_0
+<img src="results/section13/wnn.EM_0.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 0">
+EM_1
+<img src="results/section13/wnn.EM_1.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 1">
+EM_2
+<img src="results/section13/wnn.EM_2.png"                   
+     width="500"
+     alt="WNN UMAP — EM, time-point 2">
+EM_3
+<img src="results/section13/wnn.EM_3.png"
+     width="500"
+     alt="WNN UMAP — EM, time-point 3">
