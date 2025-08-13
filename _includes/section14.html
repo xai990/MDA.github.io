@@ -1,0 +1,52 @@
+<h2>14.&nbsp;Week&nbsp;of&nbsp;6&nbsp;Aug</h2>
+Run the SEACell model with a metacell ratio of 3 to see if trajectory patterns become smoother across each cell type and time point.
+Review and apply the Monocle 3 code to our data.
+Explore the Moran’s I pseudotime trajectory analysis and compare its results to Monocle 3.
+Read the two related papers on Monocle 3 and Moran’s I.
+
+when the ratio is 4:
+<img src="results/section14/metacellratio4.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+
+compare with Monocle 3 and logpca:
+<img src="results/section14/monocle3K27.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+<img src="results/section14/logpcaK27.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+
+wnn parameters test:
+lsi:
+<img src="results/section14/lsinormalization.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+logpca:
+<img src="results/section14/pcanormalization.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+
+n_neighbors:90 mini_distance:0.4
+<img src="results/section14/metacellratio4_pca_0.490NM.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+
+what actually matters:
+the dimension of the pca used for the wnn
+Because of the seacell weight matrix for K4 and K27 was a sub matrix from RNAPII, the weights used
+for seacell were not the same as the weights used for RNAPII. From the UMAP plots, it is clear that the
+K4 and K27 are more separated than RNAPII. Therefore, in the wnn process, we only used 3/5 of dims for K4
+compared with RNAPII, and 3/10 of dims for K27. 
+K4 - 24 dims
+K27 - 12 dims
+RNAPII - 40 dims
+<img src="results/section14/K424K2712RNAPII40.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
+K4 20 dims
+K27 10 dims
+RNAPII 30 dims
+<img src="results/section14/K420K2710RNAPII30.png"
+     width="500"
+     alt="RNAPII UMAP (metacell ratio 4)">
