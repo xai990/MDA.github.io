@@ -2,15 +2,114 @@
 
 <!-- 15.1 ▸ Weekly tasks -->
 <h3>15.1&nbsp;Overview of weekly tasks</h3>
-Run the SEACell model with a metacell ratio of 4 as a complement.
-Use Monocle 3 to infer trajectories and identify specific (differential) marker tile ranges.
-Explore machine-learning models for trajectory inference.
+<ul>
+  <li>Run SEACells with a <strong>metacell ratio&nbsp;=&nbsp;4</strong> as a complementary setting.</li>
+  <li>Use Monocle&nbsp;3 to infer trajectories and pseudotime; identify differential marker tile ranges.</li>
+  <li>Explore machine-learning approaches for trajectory inference.</li>
+</ul>
 
-<h3>15.2&nbsp;metacell ratio of 4</h3>
+<!-- 15.2 ▸ SEACells ratio 4 -->
+<h3>15.2&nbsp;SEACells (metacell ratio 4)</h3>
 <img src="results/section15/metacellratio4.png"
      width="500"
-     alt="UMAP — SEACells metacell ratio 4">
-<h3>15.3&nbsp;infer trajectories and pseudotime</h3>
+     alt="UMAP — SEACells, metacell ratio 4">
+
+<!-- 15.3 ▸ Trajectories & pseudotime -->
+<h3>15.3&nbsp;Trajectory inference and pseudotime</h3>
 <img src="results/section15/trajectorynpsedutime.png"
      width="500"
-     alt="UMAP — SEACells metacell ratio 4">
+     alt="UMAP with inferred trajectories and pseudotime (Monocle 3)">
+
+<!-- 15.4 ▸ Differential marker identification (tile level) -->
+<h3>15.4&nbsp;Differential marker identification (tile level; Moran’s&nbsp;I)</h3>
+
+<p><strong>K27</strong> (threshold example: <em>Moran’s&nbsp;I&nbsp;>&nbsp;0.15</em> and <em>q&nbsp;&lt;&nbsp;0.05</em>): 1 interval passes. Top intervals overall shown below.</p>
+<pre>                       status       p_value  morans_test_statistic  morans_I
+chr1:16850000-16899999     OK 3.393357e-103                21.5385  0.1583269
+chr18:38200000-38249999    OK  1.820627e-90                20.1350  0.1439833
+chr9:126600000-126649999   OK  1.064909e-88                19.9324  0.1464364
+chr17:38550000-38599999    OK  3.625372e-79                18.8022  0.1380996
+chr1:16650000-16699999     OK  6.998436e-78                18.6445  0.1368400
+chr1:16500000-16549999     OK  1.281102e-72                17.9848  0.1319934
+                                q_value
+chr1:16850000-16899999       1.87e-98
+chr18:38200000-38249999      5.02e-86
+chr9:126600000-126649999     1.96e-84
+chr17:38550000-38599999      4.99e-75
+chr1:16650000-16699999       7.72e-74
+chr1:16500000-16549999       1.18e-68
+</pre>
+
+<p><strong>K4</strong> (no intervals pass the example threshold; top intervals overall):</p>
+<pre>                       status       p_value  morans_test_statistic   morans_I
+chr1:228600000-228649999     OK  1.980788e-57                15.9294  0.1169144
+chr2:241350000-241399999     OK  1.226211e-33                12.0306  0.0878954
+chr19:1050000-1099999        OK  1.480948e-32                11.8232  0.0865374
+chr16:27400000-27449999      OK  9.700876e-28                10.8525  0.0791204
+chr17:83050000-83099999      OK  1.125235e-24                10.1877  0.0743720
+chr15:31300000-31349999      OK  4.042878e-24                10.0626  0.0734812
+                                q_value
+chr1:228600000-228649999       1.09e-52
+chr2:241350000-241399999       3.38e-29
+chr19:1050000-1099999          2.72e-28
+chr16:27400000-27449999        1.34e-23
+chr17:83050000-83099999        1.24e-20
+chr15:31300000-31349999        3.71e-20
+</pre>
+
+<p><strong>RNAPII</strong> (no intervals pass the example threshold; top intervals overall):</p>
+<pre>                          status       p_value  morans_test_statistic   morans_I
+chr8:111400000-111449999      OK  1.786819e-83                19.3210  0.1293735
+chr17:58300000-58349999       OK  4.427706e-61                16.4467  0.1207572
+chr6:9700000-9749999          OK  2.274591e-54                15.4826  0.0748928
+chr6:127200000-127249999      OK  1.381124e-42                13.6271  0.0963645
+chr13:113950000-113999999     OK  5.630439e-42                13.5242  0.0989168
+chr11:14800000-14849999       OK  4.748968e-33                11.9183  0.0864443
+</pre>
+
+<!-- 15.5 ▸ Gene-score matrix -->
+<h3>15.5&nbsp;Gene-score matrix</h3>
+<p>
+  We used the RNAPII aggregation matrix <code>A</code> to construct gene-score matrices and visualised them in the
+  WNN UMAP embedding.
+</p>
+<img src="results/section15/genescore_metecell4.png"
+     width="500"
+     alt="UMAP — gene-score matrix (metacell ratio 4)">
+
+<p><strong>RNAPII — top gene-score Moran’s&nbsp;I hits</strong></p>
+<pre>,"p_value","morans_test_statistic","morans_I","gene_short_name","q_value"
+3.05078877239198e-216,31.3648637542573,0.147238288707672,"TPM4",7.55558347370598e-212
+3.52544568648005e-213,31.1394340276113,0.146169313357753,"WDR1",4.36555939356825e-209
+4.67107267312956e-199,30.0782048371357,0.141155657408756,"RASA3",3.85612619409089e-195
+5.88966424462223e-198,29.9939196410163,0.140788514194622,"ADGRE5",3.64658561705785e-194
+7.14210347331175e-173,28.0045937519521,0.131433627310566,"LINC00565",3.53762669240077e-169
+1.41726408140155e-167,27.5661438603422,0.129374810969064,"SNX32",5.84999370666514e-164
+3.91833642630776e-148,25.8937251643128,0.121499653627069,"MIR3138",1.38630742762769e-144
+2.58772455495465e-147,25.8208293973161,0.12115904343213,"CFL1",8.01094829100085e-144
+3.55659319882956e-136,24.809312516198,0.116405180542142,"PRKX",9.78695412913476e-133
+5.83430583298802e-125,23.7474714990489,0.111408659375355,"ACTR3",1.44492418259781e-121
+</pre>
+
+<p><strong>K4 — top gene-score hits</strong></p>
+<pre>"p_value","morans_test_statistic","morans_I","gene_short_name","q_value"
+0,38.9322898603927,0.182768668470775,"CCL4L1",0
+7.91276992282791e-301,37.0534103458415,0.173952474957346,"FANK1-AS1",9.79956991092623e-297
+1.20896324228701e-297,36.8551581320761,0.173009629283233,"CCL3L1",9.98160351606902e-294
+1.12445891908068e-257,34.269316547342,0.160858919271592,"PALLD",6.96293074167737e-254
+1.49563893912855e-229,32.3262636126516,0.151750032572196,"LOC101927914",7.40909617665500e-226
+</pre>
+
+<p><strong>K27 — top gene-score hits</strong></p>
+<pre>"p_value","morans_test_statistic","morans_I","gene_short_name","q_value"
+0,57.2254756839783,0.268842181843677,"PTPRQ",0
+0,51.9771121219662,0.244167450983116,"LINC02112",0
+0,46.4897827917777,0.218340371965955,"DGKB",0
+0,46.0402731115950,0.216239390211057,"SCML4",0
+0,45.4476310279434,0.213377037941375,"DMD",0
+0,44.7536441334633,0.210198097887939,"FAM71C",0
+0,44.6592665754543,0.209676302756210,"NKAIN2",0
+0,44.5858237391443,0.209267167875841,"NTM",0
+0,44.0177103803635,0.206561527354007,"LSAMP",0
+0,43.3538707247191,0.203314054224528,"DLG2",0
+</pre>
