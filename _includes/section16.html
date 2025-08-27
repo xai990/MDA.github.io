@@ -1,39 +1,56 @@
-<h2>16.&nbsp;Week&nbsp;of&nbsp;20&nbsp;August</h2>
+<h2>16. Week of August 20</h2>
 
-<!-- 16.1 ▸ Weekly tasks -->
-<h3>16.1&nbsp;Overview of weekly tasks</h3>
-Run regression on the GeneScore matrix (after normalization and feature filtering).
-Color-code genes in the UMAP embedding to assess cluster structure and sparsity patterns.
-Generate a GeneScore matrix using customized genomic regions.
-Explore machine-learning models as a complementary approach to trajectory analysis.
-run the pipeline with Derek's dataset. ( run without the label inforamtion to see the performance)
-color-code genes in according to the histone marker and time point. 
+<h3>16.1 Weekly Tasks</h3>
+<ul>
+    <li>Run regression on the GeneScore matrix (after normalization and feature filtering).</li>
+    <li>Color-code the UMAP embedding by gene expression to assess cluster structure and sparsity patterns.</li>
+    <li>Generate a GeneScore matrix using customized genomic regions.</li>
+    <li>Explore machine-learning models as a complementary approach to trajectory analysis.</li>
+    <li>Run the pipeline on Derek's dataset, excluding label information to evaluate performance.</li>
+    <li>Color-code genes according to their corresponding histone marker and time point.</li>
+</ul>
 
-16.2
-The regression model still not returning genes. (need to debug)
+<h3>16.2 Regression Model Status</h3>
+<p>The regression model is still not returning genes and requires debugging.</p>
 
-16.3
-umap plot for the gene align the trajectory.
-The following figures was plotted using the top 3 gene from the Moran's I statistic.
-The y axis is the gene score, and the x axis is the pseudotime.
-CM:
-Gene trend:
-<img src="results/section16/K4_genetrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">
-<img src="results/section16/K27_genetrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">
-<img src="results/section16/RNAPII_genetrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">
-wnn umap embedding trajectory:
-<img src="results/section16/K4_umaptrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">
-<img src="results/section16/K27_umaptrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">
-<img src="results/section16/RNAPII_umaptrend_CM.png"
-     width="500"
-     alt="UMAP — SEACells, metacell ratio 4">     
+<h3>16.3 Trajectory Visualization</h3>
+<p>The following figures were generated using the top three genes identified by the Moran's I statistic. The y-axis represents the gene score, and the x-axis represents pseudotime.</p>
+
+<h4>Cardiomyocyte (CM) Trajectory</h4>
+
+<h5>Gene Score vs. Pseudotime</h5>
+<figure>
+    <img src="results/section16/K4_genetrend_CM.png" style="width:500px;" alt="Gene score vs. pseudotime for H3K4me3 in CM cells.">
+    <img src="results/section16/K27_genetrend_CM.png" style="width:500px;" alt="Gene score vs. pseudotime for H3K27me3 in CM cells.">
+    <img src="results/section16/RNAPII_genetrend_CM.png" style="width:500px;" alt="Gene score vs. pseudotime for RNAPII in CM cells.">
+    <figcaption>Gene expression trends for top marker genes along the CM pseudotime trajectory.</figcaption>
+</figure>
+
+<h5>Gene Expression on WNN UMAP Embedding</h5>
+<figure>
+    <img src="results/section16/K4_umaptrend_CM.png" style="width:500px;" alt="WNN UMAP of CM cells colored by H3K4me3 gene score.">
+    <img src="results/section16/K27_umaptrend_CM.png" style="width:500px;" alt="WNN UMAP of CM cells colored by H3K27me3 gene score.">
+    <img src="results/section16/RNAPII_umaptrend_CM.png" style="width:500px;" alt="WNN UMAP of CM cells colored by RNAPII gene score.">
+    <figcaption>WNN UMAP embeddings colored by gene scores for top marker genes in CM cells.</figcaption>
+</figure>
+
+<h4>Endomesoderm (EM) Trajectory</h4>
+
+<h5>Gene Score vs. Pseudotime</h5>
+<figure>
+    <img src="results/section16/K4_genetrend_EM.png" style="width:500px;" alt="Gene score vs. pseudotime for H3K4me3 in EM cells.">
+    <img src="results/section16/K27_genetrend_EM.png" style="width:500px;" alt="Gene score vs. pseudotime for H3K27me3 in EM cells.">
+    <img src="results/section16/RNAPII_genetrend_EM.png" style="width:500px;" alt="Gene score vs. pseudotime for RNAPII in EM cells.">
+    <figcaption>Gene expression trends for top marker genes along the EM pseudotime trajectory.</figcaption>
+</figure>
+
+<h5>Gene Expression on WNN UMAP Embedding</h5>
+<figure>
+    <img src="results/section16/K4_umaptrend_EM.png" style="width:500px;" alt="WNN UMAP of EM cells colored by H3K4me3 gene score.">
+    <img src="results/section16/K27_umaptrend_EM.png" style="width:500px;" alt="WNN UMAP of EM cells colored by H3K27me3 gene score.">
+    <img src="results/section16/RNAPII_umaptrend_EM.png" style="width:500px;" alt="WNN UMAP of EM cells colored by RNAPII gene score.">
+    <figcaption>WNN UMAP embeddings colored by gene scores for top marker genes in EM cells.</figcaption>
+</figure>
+
+<h3>16.4 Machine-Learning Models</h3>
+<p><em>(Content to be added)</em></p>
