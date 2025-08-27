@@ -1,0 +1,39 @@
+<h2>16.&nbsp;Week&nbsp;of&nbsp;20&nbsp;August</h2>
+
+<!-- 16.1 ▸ Weekly tasks -->
+<h3>16.1&nbsp;Overview of weekly tasks</h3>
+Run regression on the GeneScore matrix (after normalization and feature filtering).
+Color-code genes in the UMAP embedding to assess cluster structure and sparsity patterns.
+Generate a GeneScore matrix using customized genomic regions.
+Explore machine-learning models as a complementary approach to trajectory analysis.
+run the pipeline with Derek's dataset. ( run without the label inforamtion to see the performance)
+color-code genes in according to the histone marker and time point. 
+
+16.2
+The regression model still not returning genes. (need to debug)
+
+16.3
+umap plot for the gene align the trajectory.
+The following figures was plotted using the top 3 gene from the Moran's I statistic.
+The y axis is the gene score, and the x axis is the pseudotime.
+CM:
+Gene trend:
+<img src="results/section16/K4_genetrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">
+<img src="results/section16/K27_genetrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">
+<img src="results/section16/RNAPII_genetrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">
+wnn umap embedding trajectory:
+<img src="results/section16/K4_umaptrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">
+<img src="results/section16/K27_umaptrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">
+<img src="results/section16/RNAPII_umaptrend_CM.png"
+     width="500"
+     alt="UMAP — SEACells, metacell ratio 4">     
