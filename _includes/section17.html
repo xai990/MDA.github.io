@@ -1,0 +1,67 @@
+<h2>17. Week of August 27</h2>
+
+<h3>17.1 Weekly Tasks</h3>
+<ul>
+    <li>Color-code genes in the UMAP embedding: add trajectory paths and, for each gene, color cells by their respective gene-score range.</li>
+    <li>Explore methods in ArchR for overriding the GeneScore matrix.</li>
+    <li>Test imputation approaches and evaluate their performance.</li>
+    <li>Use discrete timepoints as labels and re-run the regression and machine learning models.</li>
+</ul>
+
+<h3>17.2 Regression Model Status</h3>
+<p>Successfully reproduced the regression model from the Monocle3 tutorial using the Seurat object. The time variable used for differential expression analysis is the embryo timepoint, which is discrete.</p>
+
+<p>Summary statistics for embryo timepoint:</p>
+<pre>
+Min.    1st Qu.  Median   Mean    3rd Qu.  Max. 
+160.0   270.0    380.0    401.4   500.0    780.0 
+</pre>
+
+<p>Currently debugging the regression model implementation.</p>
+
+<h3>17.3 Trajectory Visualization</h3>
+<p>Re-ran the pipeline with the imputed GeneScore matrix. The following figure shows the WNN UMAP embedding integrating H3K4me3, H3K27me3, and RNA Polymerase II signals.</p>
+
+<figure>
+    <img src="results/section17/ImputedGenescore_wnn.png" style="width:600px;" alt="WNN UMAP embedding with imputed GeneScore matrix">
+    <figcaption>Figure 1: WNN UMAP embedding with imputed GeneScore matrix.</figcaption>
+</figure>
+
+<p>Used non-imputed TileMatrix data to infer trajectory as previously performed. With the imputed GeneScore matrix, the trajectory analysis now includes nearly all genes that show significant association with the trajectory.</p>
+
+<p>The following figures illustrate gene expression trends along the trajectory and pseudotime.</p>
+
+<h4>Cardiomyocyte (CM) Trajectory</h4>
+
+<h5>RNA Polymerase II</h5>
+<figure>
+    <img src="results/section17/RNAPII_CM_Gene.png" style="width:600px;" alt="RNAPII gene expression along CM trajectory">
+    <figcaption>Figure 2a: RNA Polymerase II gene expression trends along the cardiomyocyte trajectory.</figcaption>
+</figure>
+
+<figure>
+    <img src="results/section17/RNAPII_CM_UMAP.png" style="width:600px;" alt="RNAPII UMAP visualization for CM trajectory">
+    <figcaption>Figure 2b: RNA Polymerase II signal mapped on UMAP embedding for cardiomyocyte trajectory.</figcaption>
+</figure>
+
+<h5>H3K4me3</h5>
+<figure>
+    <img src="results/section17/K4_CM_Gene.png" style="width:600px;" alt="H3K4me3 gene expression along CM trajectory">
+    <figcaption>Figure 3a: H3K4me3 gene expression trends along the cardiomyocyte trajectory.</figcaption>
+</figure>
+
+<figure>
+    <img src="results/section17/K4_CM_UMAP.png" style="width:600px;" alt="H3K4me3 UMAP visualization for CM trajectory">
+    <figcaption>Figure 3b: H3K4me3 signal mapped on UMAP embedding for cardiomyocyte trajectory.</figcaption>
+</figure>
+
+<h5>H3K27me3</h5>
+<figure>
+    <img src="results/section17/K27_CM_Gene.png" style="width:600px;" alt="H3K27me3 gene expression along CM trajectory">
+    <figcaption>Figure 4a: H3K27me3 gene expression trends along the cardiomyocyte trajectory.</figcaption>
+</figure>
+
+<figure>
+    <img src="results/section17/K27_CM_UMAP.png" style="width:600px;" alt="H3K27me3 UMAP visualization for CM trajectory">
+    <figcaption>Figure 4b: H3K27me3 signal mapped on UMAP embedding for cardiomyocyte trajectory.</figcaption>
+</figure>
