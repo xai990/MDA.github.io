@@ -1,4 +1,4 @@
-<h2>18. Week of August 27</h2>
+<h2>18. Week of September 3</h2>
 
 <h3>18.1 Weekly Tasks</h3>
 <p>For the WNN UMAP gene pattern plot, try different methods including:</p>
@@ -15,7 +15,9 @@
 <h4>Summary Statistics for Pseudotime Analysis</h4>
 <p>The following tables show the regression analysis results for each histone mark and RNAPII across CM and EM lineages:</p>
 
-<h5>H3K27me3 (K27) Results</h5>
+<h5>Imputed GeneScore Matrix Results</h5>
+
+<h6>H3K27me3 (K27) Results</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
@@ -49,7 +51,7 @@
     </tr>
 </table>
 
-<h5>H3K4me3 (K4) Results</h5>
+<h6>H3K4me3 (K4) Results</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
@@ -83,7 +85,7 @@
     </tr>
 </table>
 
-<h5>RNAPII Results</h5>
+<h6>RNAPII Results</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
@@ -117,10 +119,48 @@
     </tr>
 </table>
 
+<h5>Raw GeneScore Matrix Results</h5>
+
+<h6>RNAPII Results (Raw Data)</h6>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Total Genes Tested</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Genes Passing Min Cells</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Final Genes Analyzed</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Downregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Median Effect Size</th>
+        
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,877</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">8,948</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,929</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.010</td>
+       
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,330</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,917</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,413</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.020</td>
+       
+    </tr>
+</table>
+
 <p><strong>Analysis Parameters:</strong> Q threshold = 0.05, Min cells threshold = 10, Top genes setting = 0</p>
 
 <h3>18.3 Pseudotime Analysis Visualizations</h3>
-
+Imputed GeneScore matrix:
 <h4>H3K27me3 (K27) Pseudotime Analysis</h4>
 <div style="text-align: center; margin: 20px 0;">
     <img src="results/section18/K27/pseudotime_effect_sizes.png" style="width:600px;" alt="H3K27me3 pseudotime effect sizes">
@@ -166,5 +206,20 @@
 
 <div style="text-align: center; margin: 20px 0;">
     <img src="results/section18/RNAPII/pseudotime_umap_feature_panels.png" style="width:600px;" alt="RNAPII pseudotime UMAP feature panels">
+    <p><em>UMAP visualization with RNAPII features colored by pseudotime</em></p>
+</div>
+Raw GeneScore matrix:
+<h4>RNAPII Results (Raw Data)</h4>
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/raw/pseudotime_effect_sizes.png" style="width:600px;" alt="RNAPII pseudotime effect sizes">
+    <p><em>Effect sizes for genes along pseudotime in RNAPII analysis</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/raw/pseudotime_trend_panels.png" style="width:600px;" alt="RNAPII pseudotime trend panels">
+    <p><em>Trend panels showing gene expression patterns along pseudotime for RNAPII</em></p>
+</div>
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/raw/pseudotime_umap_feature_panels.png" style="width:600px;" alt="RNAPII pseudotime UMAP feature panels">
     <p><em>UMAP visualization with RNAPII features colored by pseudotime</em></p>
 </div>
