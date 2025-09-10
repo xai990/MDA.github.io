@@ -1,0 +1,170 @@
+<h2>18. Week of August 27</h2>
+
+<h3>18.1 Weekly Tasks</h3>
+<p>For the WNN UMAP gene pattern plot, try different methods including:</p>
+<ul>
+    <li>Imputation based on metacell data</li>
+    <li>Imputed weight adjustment</li>
+    <li>Replace the gene annotation with the CCRE BED file</li>
+    <li>Debug the regression model</li>
+</ul>
+
+<h3>18.2 Regression Model Implementation</h3>
+<p>Successfully debugged and implemented the regression model using the Seurat object with the pseudotime timepoint as a label variable.</p>
+
+<h4>Summary Statistics for Pseudotime Analysis</h4>
+<p>The following tables show the regression analysis results for each histone mark and RNAPII across CM and EM lineages:</p>
+
+<h5>H3K27me3 (K27) Results</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Total Genes Tested</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Genes Passing Min Cells</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Final Genes Analyzed</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Downregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Median Effect Size</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,384</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">13,275</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">5,109</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.012</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,147</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">13,716</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">6,431</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.028</td>
+    </tr>
+</table>
+
+<h5>H3K4me3 (K4) Results</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Total Genes Tested</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Genes Passing Min Cells</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Final Genes Analyzed</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Downregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Median Effect Size</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,568</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,915</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">8,653</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.009</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,769</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,773</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">10,907</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">8,866</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.020</td>
+    </tr>
+</table>
+
+<h5>RNAPII Results</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage Mode</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Total Genes Tested</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Genes Passing Min Cells</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Final Genes Analyzed</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Downregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Median Effect Size</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,877</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">8,948</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,929</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.010</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,330</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,917</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">9,413</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.020</td>
+    </tr>
+</table>
+
+<p><strong>Analysis Parameters:</strong> Q threshold = 0.05, Min cells threshold = 10, Top genes setting = 0</p>
+
+<h3>18.3 Pseudotime Analysis Visualizations</h3>
+
+<h4>H3K27me3 (K27) Pseudotime Analysis</h4>
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K27/pseudotime_effect_sizes.png" style="width:600px;" alt="H3K27me3 pseudotime effect sizes">
+    <p><em>Effect sizes for genes along pseudotime in H3K27me3 analysis</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K27/pseudotime_trend_panels.png" style="width:600px;" alt="H3K27me3 pseudotime trend panels">
+    <p><em>Trend panels showing gene expression patterns along pseudotime for H3K27me3</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K27/pseudotime_umap_feature_panels.png" style="width:600px;" alt="H3K27me3 pseudotime UMAP feature panels">
+    <p><em>UMAP visualization with H3K27me3 features colored by pseudotime</em></p>
+</div>
+
+<h4>H3K4me3 (K4) Pseudotime Analysis</h4>
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K4/pseudotime_effect_sizes.png" style="width:600px;" alt="H3K4me3 pseudotime effect sizes">
+    <p><em>Effect sizes for genes along pseudotime in H3K4me3 analysis</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K4/pseudotime_trend_panels.png" style="width:600px;" alt="H3K4me3 pseudotime trend panels">
+    <p><em>Trend panels showing gene expression patterns along pseudotime for H3K4me3</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/K4/pseudotime_umap_feature_panels.png" style="width:600px;" alt="H3K4me3 pseudotime UMAP feature panels">
+    <p><em>UMAP visualization with H3K4me3 features colored by pseudotime</em></p>
+</div>
+
+<h4>RNAPII Pseudotime Analysis</h4>
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/pseudotime_effect_sizes.png" style="width:600px;" alt="RNAPII pseudotime effect sizes">
+    <p><em>Effect sizes for genes along pseudotime in RNAPII analysis</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/pseudotime_trend_panels.png" style="width:600px;" alt="RNAPII pseudotime trend panels">
+    <p><em>Trend panels showing gene expression patterns along pseudotime for RNAPII</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section18/RNAPII/pseudotime_umap_feature_panels.png" style="width:600px;" alt="RNAPII pseudotime UMAP feature panels">
+    <p><em>UMAP visualization with RNAPII features colored by pseudotime</em></p>
+</div>
