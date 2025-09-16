@@ -1,0 +1,151 @@
+<h2>19. Week of September 10</h2>
+
+<h3>19.1 Weekly Tasks</h3>
+<p>This week's objectives included:</p>
+<ul>
+    <li>Reduce the number of cells for imputing the GeneScore (potentially impute at the metacell level)</li>
+    <li>Cross-validate the Moran's I test and regression results</li>
+    <li>Color-code the UMAP in a more interpretable way (set the maximum value of the heatmap range to the 3rd quartile of the maximum value)</li>
+    <li>Develop a time-series machine learning model with attention mechanism for identifying marker genes</li>
+</ul>
+
+<h3>19.2 Reduced Imputation Cell Number for Single Cell GeneScore Matrix</h3>
+<p>We investigated the impact of reducing the number of cells used for imputation. Even when reducing the cell number from 15 to 5, there was not much difference in the imputation results, suggesting that the method is robust to this parameter change.</p>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/imputedK3.png" style="width:600px;" alt="Imputation results with K=3 cells">
+    <p><em>Imputation results using K=3 cells</em></p>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/imputedK15.png" style="width:600px;" alt="Imputation results with K=15 cells">
+    <p><em>Imputation results using K=15 cells for comparison</em></p>
+</div>
+
+<p>We also implemented imputation at the metacell level to further optimize the process:</p>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/imputedK5_metacell.png" style="width:600px;" alt="Imputation at metacell level with K=5">
+    <p><em>Imputation results at the metacell level using K=5</em></p>
+</div>
+
+<h3>19.3 Cross-Validation of Moran's I Test and Regression Results</h3>
+<p>We performed a comprehensive cross-validation analysis comparing Moran's I spatial autocorrelation tests with differential gene expression (DE) analysis for imputation K=15 at the single cell level. This analysis helps validate the robustness of our findings across different statistical approaches.</p>
+
+<h4>Overall Cross-Validation Statistics</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Metric</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Value</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Total Moran's I significant genes</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">144,408</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Total DE significant genes</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">115,079</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Total overlapping genes</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">113,550</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">Overall Jaccard index</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7780</td>
+    </tr>
+</table>
+
+<h4>Modality-Specific Cross-Validation Results</h4>
+
+<h5>H3K4me3 (K4) Modality</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlapping</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Precision</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">23,028</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,568</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">17,987 (96.9%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7618</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.9687</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">23,445</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,773</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,240 (97.3%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8024</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.9730</td>
+    </tr>
+</table>
+
+<h5>H3K27me3 (K27) Modality</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlapping</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Precision</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,768</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,384</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,384 (100%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7422</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">1.0000</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,630</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,147</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,083 (99.7%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8132</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.9968</td>
+    </tr>
+</table>
+
+<h5>RNAPII Modality</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlapping</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Precision</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,460</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,877</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,816 (99.7%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7673</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.9967</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">24,077</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,330</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,040 (98.5%)</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7813</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.9849</td>
+    </tr>
+</table>
+
+<h4>Key Cross-Validation Findings</h4>
+<ul>
+    <li><strong>High Concordance:</strong> DE precision ranges from 96.9% to 100% across all conditions, indicating that nearly all genes identified as significant by DE are also identified by Moran's I</li>
+    <li><strong>Method Complementarity:</strong> Moran's I identifies more genes overall (spatial autocorrelation), while DE is more selective but highly precise (temporal changes)</li>
+    <li><strong>Lineage Consistency:</strong> Both CM and EM lineages show similar patterns of concordance, with EM lineage showing slightly higher Jaccard indices (0.78-0.81)</li>
+    <li><strong>Modality Robustness:</strong> Results are consistent across all three modalities (K4, K27, RNAPII), with K27 showing the highest DE precision (100% in CM lineage)</li>
+</ul>
