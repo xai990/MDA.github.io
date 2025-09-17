@@ -30,9 +30,11 @@
 </div>
 
 <h3>19.3 Cross-Validation of Moran's I Test and Regression Results</h3>
-<p>We performed a comprehensive cross-validation analysis comparing Moran's I spatial autocorrelation tests with differential gene expression (DE) analysis for imputation K=15 at the single cell level. This analysis helps validate the robustness of our findings across different statistical approaches.</p>
+<p>We performed comprehensive cross-validation analyses comparing Moran's I spatial autocorrelation tests with differential gene expression (DE) analysis at both single cell and metacell levels. This analysis helps validate the robustness of our findings across different statistical approaches and imputation strategies.</p>
 
-<h4>Overall Cross-Validation Statistics</h4>
+<h4>Single Cell Level Analysis (K=15)</h4>
+
+<h5>Overall Cross-Validation Statistics</h5>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Metric</th>
@@ -56,9 +58,9 @@
     </tr>
 </table>
 
-<h4>Modality-Specific Cross-Validation Results</h4>
+<h5>Modality-Specific Cross-Validation Results</h5>
 
-<h5>H3K4me3 (K4) Modality</h5>
+<h6>H3K4me3 (K4) Modality</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
@@ -86,7 +88,7 @@
     </tr>
 </table>
 
-<h5>H3K27me3 (K27) Modality</h5>
+<h6>H3K27me3 (K27) Modality</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
@@ -114,7 +116,7 @@
     </tr>
 </table>
 
-<h5>RNAPII Modality</h5>
+<h6>RNAPII Modality</h6>
 <table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
     <tr style="background-color: #f2f2f2;">
         <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
@@ -142,10 +144,107 @@
     </tr>
 </table>
 
-<h4>Key Cross-Validation Findings</h4>
+<h4>Metacell Level Analysis (K=5)</h4>
+<p>The metacell level analysis provides a different perspective on the cross-validation results, showing how the methods perform when applied to aggregated cell data rather than individual cells.</p>
+
+<h5>H3K4me3 (K4) Modality - Metacell Level</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlap</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Dice Coefficient</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE F1 Score</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">15,911</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,568</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">12,494</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.5683</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7247</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7247</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">15,821</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,773</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">13,109</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.5830</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7366</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7366</td>
+    </tr>
+</table>
+
+<h5>H3K27me3 (K27) Modality - Metacell Level</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlap</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Dice Coefficient</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE F1 Score</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,812</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,384</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">15,622</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.6627</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7971</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7971</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,006</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,147</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">14,918</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.6420</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7820</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.7820</td>
+    </tr>
+</table>
+
+<h5>RNAPII Modality - Metacell Level</h5>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Moran's I Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Overlap</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Jaccard Index</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Dice Coefficient</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">DE F1 Score</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,464</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">18,877</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">15,859</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.6754</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8062</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8062</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">20,633</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">19,330</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">16,316</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.6900</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8166</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">0.8166</td>
+    </tr>
+</table>
+
+<h4>Comparative Analysis: Single Cell vs Metacell Level</h4>
 <ul>
-    <li><strong>High Concordance:</strong> DE precision ranges from 96.9% to 100% across all conditions, indicating that nearly all genes identified as significant by DE are also identified by Moran's I</li>
-    <li><strong>Method Complementarity:</strong> Moran's I identifies more genes overall (spatial autocorrelation), while DE is more selective but highly precise (temporal changes)</li>
-    <li><strong>Lineage Consistency:</strong> Both CM and EM lineages show similar patterns of concordance, with EM lineage showing slightly higher Jaccard indices (0.78-0.81)</li>
-    <li><strong>Modality Robustness:</strong> Results are consistent across all three modalities (K4, K27, RNAPII), with K27 showing the highest DE precision (100% in CM lineage)</li>
+    <li><strong>Single Cell Level (K=15):</strong> Shows higher overall concordance with Jaccard indices ranging from 0.74-0.81 and DE precision of 96.9%-100%</li>
+    <li><strong>Metacell Level (K=5):</strong> Shows more moderate concordance with Jaccard indices ranging from 0.57-0.69, indicating that aggregation affects method agreement</li>
+    <li><strong>Method Robustness:</strong> Both approaches consistently identify significant genes, but single cell analysis provides higher precision in gene overlap detection</li>
+    <li><strong>Computational Efficiency:</strong> Metacell level analysis offers computational advantages while maintaining reasonable concordance between methods</li>
 </ul>
+
