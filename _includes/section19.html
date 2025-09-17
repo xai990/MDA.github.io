@@ -240,11 +240,12 @@
     </tr>
 </table>
 
-<h4>Comparative Analysis: Single Cell vs Metacell Level</h4>
-<ul>
-    <li><strong>Single Cell Level (K=15):</strong> Shows higher overall concordance with Jaccard indices ranging from 0.74-0.81 and DE precision of 96.9%-100%</li>
-    <li><strong>Metacell Level (K=5):</strong> Shows more moderate concordance with Jaccard indices ranging from 0.57-0.69, indicating that aggregation affects method agreement</li>
-    <li><strong>Method Robustness:</strong> Both approaches consistently identify significant genes, but single cell analysis provides higher precision in gene overlap detection</li>
-    <li><strong>Computational Efficiency:</strong> Metacell level analysis offers computational advantages while maintaining reasonable concordance between methods</li>
-</ul>
+<h3>19.4 Color-Code the UMAP in a More Interpretable Way</h3>
+<p>We color-coded the UMAP in a more interpretable way by setting the maximum value of the heatmap range to the 90% of the maximum value.</p>
+
+Choose the range of 10-90% of the data range for the heatmap.
+<img src="results/section19/RNAPII_pseudotime_umap_robust_scaling.png" style="width:600px;" alt="UMAP color-coded">
+
+we have tried with plot align the pusedotime with high gene score. 
+<img src="results/section19/RNAPII_pseudotime_expression_overlay.png" style="width:600px;" alt="UMAP color-coded">
 
