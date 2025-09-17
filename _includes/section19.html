@@ -240,12 +240,37 @@
     </tr>
 </table>
 
-<h3>19.4 Color-Code the UMAP in a More Interpretable Way</h3>
-<p>We color-coded the UMAP in a more interpretable way by setting the maximum value of the heatmap range to the 90% of the maximum value.</p>
+<h3>19.4 Enhanced UMAP Visualization with Robust Color Scaling</h3>
+<p>To improve the interpretability of UMAP visualizations, we implemented robust color scaling by setting the heatmap range to 10-90% of the data range instead of using the full range. This approach reduces the impact of extreme outliers and provides better visual contrast for the majority of the data points.</p>
 
-Choose the range of 10-90% of the data range for the heatmap.
-<img src="results/section19/RNAPII_pseudotime_umap_robust_scaling.png" style="width:600px;" alt="UMAP color-coded">
+<h4>Robust Scaling Implementation</h4>
+<p>We chose the 10-90% percentile range for the heatmap scaling to ensure that the color coding effectively represents the distribution of gene expression values while minimizing the influence of extreme outliers that could compress the color scale.</p>
 
-we have tried with plot align the pusedotime with high gene score. 
-<img src="results/section19/RNAPII_pseudotime_expression_overlay.png" style="width:600px;" alt="UMAP color-coded">
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/RNAPII_pseudotime_umap_robust_scaling.png" style="width:600px;" alt="UMAP with robust scaling applied to RNAPII pseudotime">
+    <p><em>UMAP visualization with robust scaling (10-90% percentile range) applied to RNAPII pseudotime data</em></p>
+</div>
 
+<h4>Pseudotime and Gene Expression Overlay</h4>
+<p>We developed an enhanced visualization approach that aligns pseudotime trajectories with high gene expression scores, providing a more intuitive representation of the temporal dynamics in the data.</p>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/RNAPII_pseudotime_expression_overlay.png" style="width:600px;" alt="UMAP with pseudotime and gene expression overlay">
+    <p><em>UMAP visualization showing pseudotime trajectories overlaid with high gene expression scores for RNAPII</em></p>
+</div>
+
+<h4>Diagnostic Analysis of Top Genes</h4>
+<p>To validate the robust scaling approach, we generated diagnostic histograms of the top genes to assess the distribution of expression values and confirm the effectiveness of the 10-90% percentile scaling.</p>
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="results/section19/RNAPII_robust_scaling_diagnostic.png" style="width:600px;" alt="Diagnostic histogram of top genes with robust scaling">
+    <p><em>Diagnostic histogram showing the distribution of top gene expression values with robust scaling applied</em></p>
+</div>
+
+<h4>Visualization Improvements Summary</h4>
+<ul>
+    <li><strong>Robust Color Scaling:</strong> 10-90% percentile range reduces outlier impact and improves visual contrast</li>
+    <li><strong>Enhanced Pseudotime Visualization:</strong> Clear alignment of temporal trajectories with gene expression patterns</li>
+    <li><strong>Diagnostic Validation:</strong> Histogram analysis confirms effective scaling and data distribution representation</li>
+    <li><strong>Improved Interpretability:</strong> Better visual distinction between different expression levels and temporal patterns</li>
+</ul>
