@@ -1,0 +1,135 @@
+<h2>20. Week of September 17</h2>
+
+<h3>20.1 Meeting Notes & Tasks</h3>
+<ul>
+    <li>Generate a scatter plot based on the gene list from Moran's I and the regression model using the raw gene score matrix (top priority).</li>
+    <li>Focus on the gene score from K27.</li>
+    <li>Run and test the imputation parameters to reduce the gene list and ensure the differential gene list is meaningful.</li>
+    <li>Perform imputation on the raw metacell tile matrix to infer the metacell imputed gene score matrix.</li>
+    <li>Add the data processing pipeline plot to the webpage.</li>
+    <li>Update the cross-validation table for the imputed metacell data.</li>
+</ul>
+
+<h3>20.2 Scatter Plot</h3>
+<p>The scatter plot is generated using the gene list from Moran's I and the regression model using the <b>raw gene score matrix</b>.</p>
+<p>The plot results are stored in the <a href="https://mdandersonorg-my.sharepoint.com/personal/yzheng8_mdanderson_org/Documents/Research/Projects/scEpigenomics/CAR-T/scMultiTag/Resutls/DE_analysis_Raw_Genescore?csf=1&web=1&e=TFF8ew">DE_analysis_Raw_Genescore</a> folder.</p>
+
+<h4>K27 Gene Score Analysis</h4>
+<p><strong>From the raw gene score matrix:</strong> Among the top 10 differentially expressed genes, the coefficient for K27 shows only one downregulated gene (CM Lineage).</p>
+<p><em>Note:</em> Downregulated genes have negative coefficients, meaning that as the predictor variable increases, the dependent variable tends to decrease.</p>
+<img src="results/section20/K27_Regression_CMcoefficient.png" style="width:600px;" alt="K27 Regression CM Coefficient Plot">
+
+<p><strong>From the imputed gene score matrix:</strong> Among the top 10 differentially expressed genes, the coefficient for K27 shows six downregulated genes (EM Lineage).</p>
+<img src="results/section20/K27_Regression_EMcoefficient.png" style="width:600px;" alt="K27 Regression EM Coefficient Plot">
+
+<h4>Regression Model Results (Raw Gene Score Matrix)</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Gene Type</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Downregulated</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>K27</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">816</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">171</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">6,724</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">2,306</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>K4</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">293</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">151</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">1,975</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">777</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>RNAPII</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">86</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">47</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">195</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">121</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+</table>
+
+
+<h3>20.3 Imputation</h3>
+<p>The imputation was run based on the metacell level. We obtained the metacell raw gene score matrix and ran imputation using <code>scanpy.external.pp.magic</code> with the following parameters:</p>
+<ul>
+    <li><strong>knn=2</strong>: Number of nearest neighbors on which to build the kernel</li>
+    <li><strong>t=1</strong>: Diffusion step</li>
+</ul>
+<p>The plot results are stored in the <a href="https://mdandersonorg-my.sharepoint.com/personal/yzheng8_mdanderson_org/Documents/Research/Projects/scEpigenomics/CAR-T/scMultiTag/Resutls/DE_analysis_Raw_Genescore?csf=1&web=1&e=TFF8ew">DE_analysis_Raw_Genescore</a> folder.</p>
+
+<h4>Regression Model Results (Imputed Gene Score Matrix)</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 10px 0;">
+    <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Gene Type</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Lineage</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Significant Genes</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Upregulated</th>
+        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Downregulated</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>K27</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">3,556</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">845</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">6,724</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">2,306</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>K4</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">3,558</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">1,687</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">5,961</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">3,216</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;" rowspan="2"><strong>RNAPII</strong></td>
+        <td style="border: 1px solid #ddd; padding: 8px;">CM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">2,353</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">1,088</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;">EM</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">3,909</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">2,235</td>
+        <td style="border: 1px solid #ddd; padding: 8px;">-</td>
+    </tr>
+</table>
+
+
+
