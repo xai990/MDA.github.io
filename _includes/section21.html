@@ -1,0 +1,85 @@
+<h2>20. Week of October 1</h2>
+
+<h3>20.1 Meeting Notes & Tasks</h3>
+<ul>
+    <li>Update the trajectory analysis results from the genescore matrix derived from the metacell imputed tile matrix.</li>
+    <li>Update the GitHub repository with workflow descriptions.</li>
+    <li>Run the pipeline on Derek's dataset.</li>
+</ul>
+
+<h3>20.2 Trajectory Analysis Results</h3>
+<p>The trajectory analysis results from the genescore matrix derived from the metacell imputed tile matrix have been updated in the 
+    <a href="https://mdandersonorg-my.sharepoint.com/personal/yzheng8_mdanderson_org/Documents/Research/Projects/scEpigenomics/CAR-T/scMultiTag/Resutls/DE_analysis_Imputed_Genescore_from_Imputed_Tilematrix?csf=1&web=1&e=hojmbh">DE_analysis_Imputed_Genescore</a> folder.</p>
+
+<h3>20.3 GitHub Repository</h3>
+<p>Work on Derek's dataset:</p>
+
+<ol>
+    <li><strong>Create the ArchR project with specific files:</strong><br>
+        <code>CUTAC_Batch*_2in1_w*_wSplit_Final.bed.gz</code> — This is the BED file containing single cells after filtering from the original BED file.<br>
+        Corresponding batch files for K4 and K27. The batch numbers must match.<br>
+        Example for batch 7:
+        <ul>
+            <li><code>CUTAC_Batch7_2in1_wK4me123_wSplit_Final.bed.gz</code></li>
+            <li><code>CUTAC_Batch7_2in1_wK27me3_wSplit_Final.bed.gz</code></li>
+            <li><code>K4me123_Batch7_2in1_wCUTAC_Final.bed.gz</code></li>
+            <li><code>K27me3_Batch7_2in1_wCUTAC_Final.bed.gz</code></li>
+        </ul>
+        In total, there are 3 batches meeting the criteria: batches 7, 8, and 9.<br>
+        We created the ArchR project with minFrag ≥ 300 and tile size 50K.
+    </li>
+
+    <li><strong>Remove outliers with DBSCAN clustering</strong> and export the matrix from the ArchR project.</li>
+
+    <li><strong>Create the AnnData object</strong> with the matrix from the ArchR project and perform intersection checks with the barcode.<br>
+        Results: K4 16,495 → 6,211 cells, K27 29,218 → 8,571 cells, RNAPII 16,398 → 14,782 cells.
+    </li>
+
+    <li><strong>Run the Seacells model</strong> to generate the metacell tile matrix without label information.<br>
+        Note that the Seacells model runs at the batch level. We are not adding label information for the first run.<br>
+        For example, the RNAPII aggregation is based on batches 7, 8, and 9.<br>
+        We export the metacell weight matrix A used for K4 and K27 aggregation.
+    </li>
+
+    <li><strong>Aggregate the metacell tile matrix</strong> for K4 and K27.<br>
+        We used the saved weight matrix A for K4 and K27 aggregation.
+    </li>
+
+    <li><strong>Visualize the UMAP</strong> of the metacell tile matrix for K4, K27, and RNAPII.</li>
+</ol>
+
+<p>We compared the UMAP plot of the metacell tile matrix for K4, K27, and RNAPII with the raw single-cell data.</p>
+
+<h4>UMAP Visualizations</h4>
+
+<div class="image-gallery">
+    <h5>K4 Histone Mark</h5>
+    <div class="image-row">
+        <img src="results/section21/figures/K4/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of K4 metacell tile matrix with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+        <img src="results/section21/figures/K4/subset_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of K4 subset data with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+    </div>
+
+    <h5>K27 Histone Mark</h5>
+    <div class="image-row">
+        <img src="results/section21/figures/K27/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of K27 metacell tile matrix with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+        <img src="results/section21/figures/K27/subset_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of K27 subset data with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+    </div>
+
+    <h5>RNAPII</h5>
+    <div class="image-row">
+        <img src="results/section21/figures/RNAPII/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of RNAPII metacell tile matrix with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+        <img src="results/section21/figures/RNAPII/subset_normalize_total_ntop20000nneighbor30_mindist0.1.png" 
+             style="width:600px;" 
+             alt="UMAP visualization of RNAPII subset data with normalization, showing 20,000 top features, 30 neighbors, and minimum distance 0.1">
+    </div>
+</div>
