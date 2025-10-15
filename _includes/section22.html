@@ -1,0 +1,43 @@
+<h2>22. Week of October 8</h2>
+
+<h3>22.1 Meeting Notes & Tasks</h3>
+<p>Reproduce Derek's results using all data that meets the quality control requirements.</p>
+<p>Analyze the clustering at both the single-cell and metacell levels.</p>
+<p>After assigning meaningful labels to the cell data, perform trajectory inference and analysis.</p>
+
+<h3>22.2 Reproduce Derek's Results</h3>
+
+<p>For K4, the tile size is 5K.</p>
+<p>Here is the single-cell UMAP plot:</p>
+<img src="results/section22/K4umap.png" style="width:600px;" alt="K4 single-cell UMAP plot before batch correction">
+<p>Then, they apply Harmony to remove batch effects:</p>
+<img src="results/section22/K4umap_harmony.png" style="width:600px;" alt="K4 single-cell UMAP plot after Harmony batch correction">
+<p>During the processing, they calculate the 5th and 95th percentiles of FRiP (Fraction of Reads in Peaks) scores and use them to filter the cells—higher FRiP scores indicate better quality.</p>
+<p>Here is the FRiP score distribution from the final dataset (based on the full batch data):</p>
+<img src="results/section22/K4FRiP.png" style="width:600px;" alt="K4 FRiP score distribution histogram">
+<p>For K27, the tile size is 50K.</p>
+<p>Here is the single-cell UMAP plot:</p>
+<img src="results/section22/K27umap.png" style="width:600px;" alt="K27 single-cell UMAP plot before batch correction">
+<p>Then, they apply Harmony to remove batch effects:</p>
+<img src="results/section22/K27umap_harmony.png" style="width:600px;" alt="K27 single-cell UMAP plot after Harmony batch correction">
+<p>Here is the FRiP score distribution from the final dataset (based on the full batch data):</p>
+<img src="results/section22/K27FRiP.png" style="width:600px;" alt="K27 FRiP score distribution histogram">
+<p>For RNAPII, the tile size is 50K.</p>
+<p>Here is the single-cell UMAP plot:</p>
+<img src="results/section22/RNAPIIumap.png" style="width:600px;" alt="RNAPII single-cell UMAP plot before batch correction">
+<p>Then, they apply Harmony to remove batch effects:</p>
+<img src="results/section22/RNAPIIumap_harmony.png" style="width:600px;" alt="RNAPII single-cell UMAP plot after Harmony batch correction">
+<p>Here is the FRiP score distribution from the final dataset (based on the full batch data):</p>
+<img src="results/section22/RNAPIIFRiP.png" style="width:600px;" alt="RNAPII FRiP score distribution histogram">
+
+
+<h3>22.3 Analyze the Clustering at Metacell Levels</h3>
+<p>For K4, because the tile size is 50K instead of 5K, we do not have the results yet.</p>
+<p>For this analysis, I used K27 and RNAPII to show the results.</p>
+<p>The direct plot without removing the batch effect:</p>
+<img src="results/section21/K27/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" style="width:600px;" alt="K27 metacell UMAP plot before batch correction">
+<p>The plot after removing the batch effect:</p>
+<img src="results/section22/K27metacellumap_harmony.png" style="width:600px;" alt="K27 metacell UMAP plot after Harmony batch correction">
+<p>RNAPII:</p>
+<img src="results/section21/RNAPII/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" style="width:600px;" alt="RNAPII metacell UMAP plot before batch correction">
+<img src="results/section22/RNAPIImetacellumap_harmony.png" style="width:600px;" alt="RNAPII metacell UMAP plot after Harmony batch correction">
