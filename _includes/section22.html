@@ -19,8 +19,9 @@
     <p class="parameter-note"><strong>Tile Size:</strong> 5K base pairs (optimized for promoter-associated marks)</p>
     
     <p>Initial UMAP visualization of single cells reveals distinct cell populations with visible batch effects:</p>
-    <img src="results/section22/K4umap.png" style="width:600px;" alt="K4 single-cell UMAP plot before batch correction">
-    
+    <img src="results/section22/H3K4me123_fragment_density_plot.png" style="width:600px;" alt="K4 single-cell UMAP plot before batch correction">
+    <p> The density plot of the K4 data is shown below:</p>
+    <img src="results/section22/K4density.png" style="width:600px;" alt="K4 density plot">
     <p>After applying Harmony for batch effect removal, we observe improved cluster separation and biological structure:</p>
     <img src="results/section22/K4umap_harmony.png" style="width:600px;" alt="K4 single-cell UMAP plot after Harmony batch correction">
     
@@ -35,7 +36,8 @@
     
     <p>Single-cell UMAP projection before batch correction shows batch-associated clustering:</p>
     <img src="results/section22/K27umap.png" style="width:600px;" alt="K27 single-cell UMAP plot before batch correction">
-    
+    <p> The density plot of the K27 data is shown below:</p>
+    <img src="results/section22/H3K27me3_fragment_density_plot.png" style="width:600px;" alt="K27 density plot">
     <p>Harmony integration successfully removes batch effects while preserving biological variation:</p>
     <img src="results/section22/K27umap_harmony.png" style="width:600px;" alt="K27 single-cell UMAP plot after Harmony batch correction">
     
@@ -50,7 +52,8 @@
     
     <p>Pre-correction UMAP shows clear batch-specific clustering patterns:</p>
     <img src="results/section22/RNAPIIumap.png" style="width:600px;" alt="RNAPII single-cell UMAP plot before batch correction">
-    
+    <p> The density plot of the RNAPII data is shown below:</p>
+    <img src="results/section22/RNAPII_fragment_density_plot.png" style="width:600px;" alt="RNAPII density plot">
     <p>Post-Harmony visualization reveals underlying biological structure:</p>
     <img src="results/section22/RNAPIIumap_harmony.png" style="width:600px;" alt="RNAPII single-cell UMAP plot after Harmony batch correction">
     
@@ -69,7 +72,7 @@
     <h4>H3K27me3 Metacell Analysis</h4>
     
     <p>Metacell UMAP without batch correction shows strong batch-associated clustering:</p>
-    <img src="results/section21/K27/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" style="width:600px;" alt="K27 metacell UMAP plot before batch correction">
+    <img src="results/section22/metacellK27.png" style="width:600px;" alt="K27 metacell UMAP plot before batch correction">
     
     <p>After Harmony integration, metacells reveal clearer biological structure:</p>
     <img src="results/section22/K27metacellumap_harmony.png" style="width:600px;" alt="K27 metacell UMAP plot after Harmony batch correction">
@@ -80,7 +83,7 @@
     <h4>RNA Polymerase II Metacell Analysis</h4>
     
     <p>Pre-correction metacell clustering demonstrates batch effects at the aggregate level:</p>
-    <img src="results/section21/RNAPII/metacell_normalize_total_ntop20000nneighbor30_mindist0.1.png" style="width:600px;" alt="RNAPII metacell UMAP plot before batch correction">
+    <img src="results/section22/metacellRNAPII.png" style="width:600px;" alt="RNAPII metacell UMAP plot before batch correction">
     
     <p>Post-Harmony metacell structure shows improved biological clustering:</p>
     <img src="results/section22/RNAPIImetacellumap_harmony.png" style="width:600px;" alt="RNAPII metacell UMAP plot after Harmony batch correction">

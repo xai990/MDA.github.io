@@ -1,0 +1,29 @@
+<h2>23. Week of October 15</h2>
+
+<h3>23.1 Meeting Objectives & Tasks</h3>
+<div class="summary-box">
+    <ul>
+        Add UMAP plots showing before and after batch effect removal, with batch labels.
+Generate a histogram plot to visualize the tile fragment distribution.
+Assign cluster annotations (metacell) following the approach used by Dereck in their paper -- imputed vs raw genescore
+    </ul>
+</div>
+
+<h3> 23.2 UMAP plots</h3>
+Updataed in last week report.
+
+<h3> 23.3 Tile fragment distribution</h3>
+Updataed in last week report.
+
+<h3> 23.4 Cluster annotations</h3>
+For derek's paper, they used the imputated genescore to assign cluster annotations. 
+1. add a list of marker genes for each cell type.
+2. get the imputed genescore for each marker gene.
+3. plot each imputed genescore.
+4. check the increase/decrease of the imputed genescore for each cell type.
+5. manually assign the cluster annotations based on the imputed genescore.
+
+Here is one example of the imputed genescore plot for the marker gene MECOM.
+<img src="results/section23/K4markgeneMECOMplot.png" style="width:600px;" alt="K4 marker gene MECOM plot">
+Eventually, we will have a new cluster annotaion plot
+<img src="results/section23/H3K4me123_UMAP_NewClusters.png" style="width:600px;" alt="K4 marker gene MECOM plot">
