@@ -3,27 +3,30 @@
 <h3>23.1 Meeting Objectives & Tasks</h3>
 <div class="summary-box">
     <ul>
-        Add UMAP plots showing before and after batch effect removal, with batch labels.
-Generate a histogram plot to visualize the tile fragment distribution.
-Assign cluster annotations (metacell) following the approach used by Dereck in their paper -- imputed vs raw genescore
+        <li>Add UMAP plots showing before and after batch effect removal, with batch labels.</li>
+        <li>Generate a histogram plot to visualize the tile fragment distribution.</li>
+        <li>Assign cluster annotations (metacell) following the approach used by Dereck in their paper (imputed vs. raw gene score).</li>
     </ul>
 </div>
 
-<h3> 23.2 UMAP plots</h3>
-Updataed in last week report.
+<h3>23.2 UMAP Plots</h3>
+<p>Updated in last week's report.</p>
 
-<h3> 23.3 Tile fragment distribution</h3>
-Updataed in last week report.
+<h3>23.3 Tile Fragment Distribution</h3>
+<p>Updated in last week's report.</p>
 
-<h3> 23.4 Cluster annotations</h3>
-For derek's paper, they used the imputated genescore to assign cluster annotations. 
-1. add a list of marker genes for each cell type.
-2. get the imputed genescore for each marker gene.
-3. plot each imputed genescore.
-4. check the increase/decrease of the imputed genescore for each cell type.
-5. manually assign the cluster annotations based on the imputed genescore.
+<h3>23.4 Cluster Annotations</h3>
+<p>In Dereck's paper, they used the imputed gene score to assign cluster annotations. The process is:</p>
+<ol>
+    <li>Add a list of marker genes for each cell type.</li>
+    <li>Get the imputed gene score for each marker gene.</li>
+    <li>Plot each imputed gene score.</li>
+    <li>Check the increase/decrease of the imputed gene score for each cell type.</li>
+    <li>Manually assign the cluster annotations based on the imputed gene score.</li>
+</ol>
 
-Here is one example of the imputed genescore plot for the marker gene MECOM.
+<p>Here is one example of the imputed gene score plot for the marker gene MECOM:</p>
 <img src="results/section23/K4markgeneMECOMplot.png" style="width:600px;" alt="K4 marker gene MECOM plot">
-Eventually, we will have a new cluster annotaion plot
-<img src="results/section23/H3K4me123_UMAP_NewClusters.png" style="width:600px;" alt="K4 marker gene MECOM plot">
+
+<p>Eventually, we will have a new cluster annotation plot:</p>
+<img src="results/section23/H3K4me123_UMAP_NewClusters.png" style="width:600px;" alt="New K4 Cluster Annotation UMAP">
