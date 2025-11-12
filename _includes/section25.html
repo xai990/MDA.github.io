@@ -1,0 +1,59 @@
+<h2>25. Week of Nov 12</h2>
+
+<h3>25.1 Meeting Objectives & Tasks</h3>
+<div class="summary-box">
+    <ul>
+        <li>Use the Harmony embedding (subset from Dereck’s data) for aggregation.</li>
+    </ul>
+</div>
+
+<h3>25.2 Extract the Harmony Embedding from the ArchR Project</h3>
+<p>
+    Export the Harmony embedding from the ArchR project using Dereck’s script, create the AnnData object, and visualize with a Python script.
+</p>
+<p>PolII:</p>
+<img src="results/section25/annplot/PolIIumap_harmony_batch7_8_9.png" style="width:600px;" alt="PolII Harmony UMAP for batches 7, 8, and 9">
+<p>K4:</p>
+<img src="results/section25/annplot/K4umap_harmony_batch7_8_9.png" style="width:600px;" alt="K4 Harmony UMAP for batches 7, 8, and 9">
+<p>K27:</p>
+<img src="results/section25/annplot/K27umap_harmony_batch7_8_9.png" style="width:600px;" alt="K27 Harmony UMAP for batches 7, 8, and 9">
+
+<p><strong>Complementary plots:</strong></p>
+<p>PolII from ArchR project:</p>
+<img src="results/section25/annplot/ArchrPolII.png" style="width:600px;" alt="PolII UMAP from ArchR project">
+<p>PolII from Python script with AnnData object:</p>
+<img src="results/section25/annplot/anndataPolII.png" style="width:600px;" alt="PolII UMAP generated from AnnData in Python">
+
+<h3>25.3 Aggregate Metacells Based on the Single-Cell Harmony Embedding</h3>
+<p>
+    The PolII data includes: Batch 7 — 6,049 cells; Batch 8 — 5,760 cells; Batch 9 — 6,817 cells. The metacell ratio is set to 5.
+</p>
+<p>Metacells derived from the single-cell Harmony UMAP for batches 7/8/9:</p>
+<img src="results/section25/metacell/PolIIbatch7.png" style="width:600px;" alt="PolII metacell UMAP for batch 7">
+<img src="results/section25/metacell/PolIIbatch8.png" style="width:600px;" alt="PolII metacell UMAP for batch 8">
+<img src="results/section25/metacell/PolIIbatch9.png" style="width:600px;" alt="PolII metacell UMAP for batch 9">
+
+<h3>25.4 Soft Assignment — Infer the Metacell TileMatrix</h3>
+<p>
+    After inferring the metacell TileMatrix, we concatenated batches 7/8/9 and generated the UMAP of the metacell TileMatrix:
+</p>
+<img src="results/section25/metacell/PolII_umap_normalize_total_ntop20000nneighbor40_mindist0.4.png" style="width:600px;" alt="UMAP of metacell TileMatrix for PolII across batches 7–9">
+
+<h3>25.5 Aggregate K4 and K27 Metacells</h3>
+<p>
+    Using the matrix <em>A</em> (the weight matrix mapping single cells to metacells) obtained from the PolII aggregation, we applied the same <em>A</em> to compute K4 and K27 metacells.
+</p>
+<img src="results/section25/metacell/K4_umap_normalize_total_ntop20000nneighbor40_mindist0.4.png" style="width:600px;" alt="UMAP of K4 metacells across batches 7–9">
+<img src="results/section25/metacell/K27_umap_normalize_total_ntop20000nneighbor40_mindist0.4.png" style="width:600px;" alt="UMAP of K27 metacells across batches 7–9">
+<p>
+    From the metacell UMAPs: K4 shows minimal batch effect, while others exhibit residual batch structure. (Possible factor: tile size.)
+</p>
+
+<h3>25.6 Run WNN to Integrate K4, K27, and PolII Modalities</h3>
+<img src="results/section25/metacell/wnn.png" style="width:600px;" alt="WNN integration of K4, K27, and PolII metacells">
+
+<h3>25.7 Pipeline Comparison</h3>
+<p>Dereck’s:</p>
+<img src="results/section25/pipeline/dereck.png" style="width:600px;" alt="Diagram of Dereck’s pipeline">
+<p>Ours:</p>
+<img src="results/section25/pipeline/ours.png" style="width:600px;" alt="Diagram of our pipeline">
