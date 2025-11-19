@@ -1,0 +1,71 @@
+<h2>26. Week of Nov 19</h2>
+
+<h3>26.1 Meeting Objectives & Tasks</h3>
+<div class="summary-box">
+    <ul>
+        <li><strong>Harmony First:</strong> Run Harmony on the single-cell data from each batch, then run the SEACells model on the combined data.</li>
+        <li><strong>SEACells First:</strong> Run the SEACells model on each batch’s data individually, then run Harmony on the metacell data to integrate the batches.</li>
+        <li>Check and compare the SEACells results from both approaches using the K4/K27 data.</li>
+        <li>Perform soft inference based on the Harmony embedding rather than the raw TileMatrix.</li>
+    </ul>
+</div>
+
+<h3>26.2 Soft Inference Based on Harmony Embedding</h3>
+
+<h4>Individual Batches</h4>
+<p>
+    <strong>PolII:</strong><br>
+    <img src="results/section26/harmonyembedding/RNAPII.png" style="width:600px;" alt="PolII Harmony UMAP for batches 7, 8, and 9">
+</p>
+<p>
+    <strong>K4:</strong><br>
+    <img src="results/section26/harmonyembedding/K4.png" style="width:600px;" alt="K4 Harmony UMAP for batches 7, 8, and 9">
+</p>
+<p>
+    <strong>K27:</strong><br>
+    <img src="results/section26/harmonyembedding/K27.png" style="width:600px;" alt="K27 Harmony UMAP for batches 7, 8, and 9">
+</p>
+
+<h4>Harmony First Pipeline: Whole Batch (Harmony Embedding)</h4>
+<p>
+    <strong>PolII:</strong><br>
+    <img src="results/section26/harmonyembedding/RNAPIIumap_harmony_wholebatch.png" style="width:600px;" alt="PolII Harmony Whole Batch UMAP">
+</p>
+<p>
+    <strong>K4:</strong><br>
+    <img src="results/section26/harmonyembedding/K4umap_harmony_wholebatch.png" style="width:600px;" alt="K4 Harmony Whole Batch UMAP">
+</p>
+<p>
+    <strong>K27:</strong><br>
+    <img src="results/section26/harmonyembedding/K27umap_harmony_wholebatch.png" style="width:600px;" alt="K27 Harmony Whole Batch UMAP">
+</p>
+
+<h4>Harmony First Pipeline: TileMatrix (Raw)</h4>
+<p>
+    <strong>PolII:</strong><br>
+    <img src="results/section26/harmonyembedding/RNAPIIumap_harmony_wholebatchraw.png" style="width:600px;" alt="PolII Raw TileMatrix UMAP">
+</p>
+<p>
+    <strong>K4:</strong><br>
+    <img src="results/section26/harmonyembedding/K4umap_harmony_wholebatchraw.png" style="width:600px;" alt="K4 Raw TileMatrix UMAP">
+</p>
+<p>
+    <strong>K27:</strong><br>
+    <img src="results/section26/harmonyembedding/K27umap_harmony_wholebatchraw.png" style="width:600px;" alt="K27 Raw TileMatrix UMAP">
+</p>
+
+<h3>26.3 SEACells First</h3>
+<p>Run the SEACells model on each batch’s data individually, then run Harmony based on the embedding level.</p>
+
+<p>
+    <strong>PolII:</strong><br>
+    <img src="results/section26/harmonyembedding/RNAPIIlsi.png" style="width:600px;" alt="PolII LSI UMAP">
+</p>
+<p>
+    <strong>K4:</strong><br>
+    <img src="results/section26/harmonyembedding/K4lsi.png" style="width:600px;" alt="K4 LSI UMAP">
+</p>
+<p>
+    <strong>K27:</strong><br>
+    <img src="results/section26/harmonyembedding/K27lsi.png" style="width:600px;" alt="K27 LSI UMAP">
+</p>
