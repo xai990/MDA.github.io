@@ -1,0 +1,31 @@
+<h2>32. Week of Feb 13</h2>
+
+<h3>32.1 Meeting Objectives & Tasks</h3>
+<div class="summary-box">
+    <ul>
+        <li>Obtain the reference PCA map.</li>
+        <li>Aggregate RNAPII based on the reference map.</li>
+    </ul>
+</div>
+
+<h3>32.2 Reference map projection result (RNAPII)</h3>
+<p>
+    We projected RNAPII data onto the reference PCA/CCA map and transferred labels from the reference.
+    The average mapping score is <strong>0.63</strong>, indicating that the projected cells align well with
+    major reference populations.
+</p>
+<figure>
+    <figcaption><strong>RNAPII projected onto the reference map with predicted labels.</strong></figcaption>
+    <img src="results/section32/F3000_D1-15_cca_UMAP_Predicted.png" style="width:600px;" alt="RNAPII projected onto reference UMAP with predicted labels">
+</figure>
+
+<h3>32.3 RNAPII aggregation with metacell ratio 10</h3>
+<p>
+    We aggregated RNAPII cells using a metacell ratio of 10 based on the reference-guided structure.
+    The assignment plot shows broad coverage of the main manifold with concentrated metacell representatives
+    in high-density regions.
+</p>
+<figure>
+    <figcaption><strong>Metacell assignments for aggregated RNAPII data (ratio = 10).</strong></figcaption>
+    <img src="results/section32/assignment_10_metacellratio.png" style="width:600px;" alt="Metacell assignments for RNAPII aggregation with ratio 10">
+</figure>
