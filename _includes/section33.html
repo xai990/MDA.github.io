@@ -39,3 +39,19 @@
     <figcaption><strong>K4 batch aggregation UMAP (labels currently missing).</strong></figcaption>
     <img src="results/section33/K4_batch.png" style="width:700px;" alt="UMAP of aggregated K4 batch; labels not attached (nan_nan)">
 </figure>
+
+<h3>33.4 Areas for Improvement</h3>
+<p>
+    The reference mapping results does not migrate well to the single cell data aggregation.
+</p>
+<ul>
+        <li>Consider to refine the reference map, high reference score.</li>
+        <li>Consider using the imputed genescore for the refernce mapping.</li>
+        <li>Aggregation based on the x_lsi not the x raw data.</li>
+</ul>
+
+<h3>33.5 refernce map</h3>
+based on the reference score to find the suitbale reference map
+when the dims is 15, the score is median score 0.627; 73.1% >0.5
+when the dims is 30, the score is median score 0.522; 55.3% >0.5;
+when the dims is 50, the score is median score 0.578; 65.9% >0.5;
