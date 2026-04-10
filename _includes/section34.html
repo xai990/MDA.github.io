@@ -1,0 +1,45 @@
+<h2>34. Week of April 10</h2>
+
+<h3>34.1 Meeting Objectives & Tasks</h3>
+<div class="summary-box">
+    <ul>
+        <li>Compare single-cell structure across Harmony UMAP, PCA reference space, and UMAP space.</li>
+        <li>Evaluate RNAPII metacell aggregation under different feature spaces (raw X, x_lsi, and UMAP).</li>
+    </ul>
+</div>
+
+<h3>34.2 Single-cell representation comparison</h3>
+<p>
+    We compared single-cell organization across multiple embeddings while coloring by predicted cell type.
+    These paired views help assess how well local and global neighborhood structure is retained between
+    Harmony UMAP and alternate representation spaces.
+</p>
+<figure>
+    <figcaption><strong>Harmony UMAP vs. PCA-reference embedding (colored by predicted cell type).</strong></figcaption>
+    <img src="results/section34/singlecell_pcaref.png" style="width:900px;" alt="Side-by-side comparison of Harmony UMAP and PCA-reference embedding colored by predicted cell type">
+</figure>
+<figure>
+    <figcaption><strong>Harmony UMAP vs. native UMAP embedding (colored by predicted cell type).</strong></figcaption>
+    <img src="results/section34/singlecell_umap.png" style="width:900px;" alt="Side-by-side comparison of Harmony UMAP and native UMAP embedding colored by predicted cell type">
+</figure>
+
+<h3>34.3 RNAPII metacell aggregation across feature spaces</h3>
+<p>
+    We generated RNAPII metacell layouts using three different input spaces. The current metacell labels are
+    unresolved (displayed as unknown), but the figures capture how representation choice affects the resulting
+    manifold geometry.
+</p>
+<figure>
+    <figcaption><strong>RNAPII metacell layout using raw X features.</strong></figcaption>
+    <img src="results/section34/RNAPII_rawXmetacell.png" style="width:700px;" alt="RNAPII metacell UMAP generated from raw X features">
+</figure>
+<figure>
+    <figcaption><strong>RNAPII metacell layout using x_lsi features.</strong></figcaption>
+    <img src="results/section34/RNAPII_xlsimetacell.png" style="width:700px;" alt="RNAPII metacell UMAP generated from x_lsi features">
+</figure>
+<figure>
+    <figcaption><strong>RNAPII metacell layout in UMAP space.</strong></figcaption>
+    <img src="results/section34/RNAPII_umapmetacell.png" style="width:700px;" alt="RNAPII metacell UMAP in UMAP feature space">
+</figure>
+
+
