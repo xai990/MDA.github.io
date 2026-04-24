@@ -1,0 +1,51 @@
+<article id="report-2025-W17">
+    <header>
+        <h2>35. Week of April 23</h2>
+        <nav aria-label="Breadcrumb">
+            <p>Reports &gt; 2025-W17</p>
+        </nav>
+        <p><time datetime="2025-04-23">April 23, 2025</time></p>
+    </header>
+
+    <section>
+        <h3>35.1 CCA mapping &mdash; findings and fix</h3>
+        <p>
+            MapQuery produced two embedding outputs: internal reference-PCA coordinates used for label transfer
+            scores (saved to disk), and UMAP projection coordinates (<code>ref.umap</code>) used for visualization.
+            The internal projection coordinates were the relevant input for downstream aggregation.
+        </p>
+        <p>
+            A critical issue was identified in the MapQuery output: each projected dimension was L2-normalized to
+            unit column norm, which removed PCA eigenvalue decay. All 15 CCA dimensions therefore showed
+            near-identical standard deviation (~0.00545), which would force SEACells to weight each dimension
+            equally regardless of biological signal strength.
+        </p>
+        <figure>
+            <figcaption><strong>Reference 15 dims embedding comparison.</strong></figcaption>
+            <img src="results/section35/scaled_embedding_diagnostics.png" style="width:700px;" alt="scaled_embedding_diagnostics">
+        </figure>
+        <p>
+            We tested multiple reference PCA parameter settings (DIMS: 1:15, 1:20, 1:25, 1:30; k.anchor: 5, 10, 15,
+            20; k.filter: 100, 150, 200; k.score: 30, 50). The <code>F3000_D1-15_cca</code> setup with default
+            k-parameters remained the best-performing configuration.
+        </p>
+       
+    </section>
+
+    <section>
+        <h3>35.2 Thoughts: SEACells aggregation &mdash; batch effect decision</h3>
+        <p>
+            SEACells was initially run on each batch separately, and the aggregation results were poor. A pooled run
+            across all batches is currently in progress to assess whether shared biological structure is recovered
+            more effectively.
+        </p>
+    </section>
+
+    <section>
+        <h3>35.3 Steps (next steps)</h3>
+        <p>
+            Question: Should we evaluate whether CCA dimensions should be filtered before SEACells using
+            <code>F = between-class variance / within-class variance</code>.
+        </p>
+    </section>
+</article>
